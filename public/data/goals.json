@@ -1,0 +1,54 @@
+{"users": [
+    {"userid": "10001",
+      "username": "Jackson Filler",
+      "img_url": "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Round&hairColor=SilverGray&facialHairType=Blank&facialHairColor=BlondeGolden&clotheType=GraphicShirt&clotheColor=PastelBlue&graphicType=Hola&eyeType=Close&eyebrowType=Default&mouthType=Smile&skinColor=Light",
+      "achievements": ["overachiever", "well-liked", "perseverance"],
+      "goals": [
+                {"goal": "Travel in space", "date": "2020-06-01", "complete": true}, 
+                {"goal": "Write a book", "date": "2020-05-01", "complete": false},
+                {"goal": "Find a job", "date": "2020-09-01", "complete": true}
+              ],
+      "todos": [
+                {"todo": "get grocery", "date": "2020-05-06", "urgent": true, "complete": true, "today":true}, 
+                {"todo": "turn in hw", "date": "2020-05-08", "urgent": false, "complete": false, "today":true},
+                {"todo": "write journal", "date": "2020-05-10", "urgent": true, "complete": false, "today":false}, 
+                {"todo": "doctor appointment", "date": "2020-05-11", "urgent": false, "complete": false, "today":false},
+                {"todo": "pick up child", "date": "2020-06-01", "urgent": true, "complete": false, "today":true}, 
+                {"todo": "dentist appointment", "date": "2020-06-01", "urgent": false, "complete": false, "today":false},
+                {"todo": "water the plants", "date": "2020-06-01", "urgent": true, "complete": true, "today":false}, 
+                {"todo": "reading", "date": "2020-06-11", "urgent": false, "complete": false, "today":false}
+              ],
+      "likes": 30
+    },
+    {"userid": "10002",
+      "username": "Kirsten Croutear",
+      "img_url": "https://avataaars.io/?avatarStyle=Transparent&topType=Hat&accessoriesType=Prescription01&hairColor=SilverGray&facialHairType=BeardMagestic&facialHairColor=Auburn&clotheType=GraphicShirt&clotheColor=PastelGreen&graphicType=Skull&eyeType=Hearts&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=Brown",
+      "achievements": ["collector", "overachiever", "collector"],
+      "goals": [
+                {"goal": "Protect nature.", "date": "2020-06-01", "complete": true}, 
+                {"goal": "Discover a new planet", "date": "2020-08-01", "complete": true}
+              ],
+      "todos": [
+                {"todo": "water the plants", "date": "2020-06-01", "urgent": true, "complete": true, "today":true}, 
+                {"todo": "reading", "date": "2020-06-11", "urgent": false, "complete": true, "today":true}
+              ],
+      "likes": 20
+    },
+    {"userid": "10003",
+      "username": "Becca Barhims",
+      "img_url": "https://avataaars.io/?avatarStyle=Transparent&topType=LongHairShavedSides&accessoriesType=Kurt&facialHairType=Blank&clotheType=BlazerSweater&eyeType=Dizzy&eyebrowType=Angry&mouthType=Twinkle&skinColor=Pale",
+      "achievements": ["well-liked", "collector"],
+      "goals": [
+                {"goal": "Find a lost friend", "date": "2020-06-09", "complete": true, "today":true}, 
+                {"goal": "Start a business", "date": "2020-06-01", "complete": true, "today":true}
+              ],
+      "todos": [
+                {"todo": "pick up child", "date": "2020-06-01", "urgent": true, "complete": true, "today":true}, 
+                {"todo": "dentist appointment", "date": "2020-06-01", "urgent": false, "complete": true, "today":true}
+              ],
+      "likes": 10
+    }
+  ]
+}
+
+

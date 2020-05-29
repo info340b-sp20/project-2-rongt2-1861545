@@ -1,0 +1,278 @@
+.content {
+    /* height:500px; */
+    overflow: scroll;
+}
+
+.complete-content {
+    height: 500px;
+}
+
+#logo-img {
+    max-height: 2.15rem;
+}
+
+#goals,
+#completed {
+    display: none;
+}
+
+#front-page-img {
+    z-index: 1;
+    position: absolute;
+}
+
+#front-page-title {
+    font-size: 4.5rem;
+}
+
+.front-page-link {
+    border: none;
+}
+
+#nav-divider {
+    margin: 0 -0.7rem;
+}
+
+.navbar {
+    box-shadow: 0 2px 16px 0 rgba(31, 35, 41, .05);
+}
+
+#navbar-menu {
+    box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+    padding: 0.5rem 0;
+}
+
+.followed {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.check {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.font-strike {
+    text-decoration: line-through;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.tag {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.tag svg {
+    margin-right: 5px;
+}
+
+.bg-img {
+    background-image: url(/img/background/plan-lg.jpg);
+    background-position: center -450px;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #999;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.title {
+    font-family: 'TTCommons-Regular', 'Source Sans Pro', sans-serif;
+}
+
+.hero.is-primary .title,
+.hero.is-primary .subtitle {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.tile input {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+input:focus::-webkit-input-placeholder {
+    color: #999;
+}
+
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: transparent;
+}
+
+
+/* Firefox > 19 */
+
+input:focus::-moz-placeholder {
+    color: #999;
+}
+
+.tile input:focus {
+    border-color: #3370ff;
+    box-shadow: inset 0 0 6px 0 rgba(51, 112, 255, .4);
+    border: solid 1px #3370ff;
+}
+
+.is-divider {
+    display: block;
+    position: relative;
+    border-top: .0718rem solid #dbdbdb;
+    height: .1rem;
+    margin: 0.5rem 0;
+    text-align: center;
+}
+
+.circle {
+    /* width: 10px;
+    height: 10px; */
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+    border-radius: 50%;
+    /* background-color: #3370ff; */
+    border: 1.618px solid #3370ff;
+}
+
+#home nav,
+#home .navbar-menu {
+    background-color: #F8FAFF;
+    box-shadow: none;
+}
+
+.todo-item {
+    display: flex;
+    position: relative;
+}
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.box-shadow-lift {
+    box-shadow: rgba(0, 0, 0, 0.1) 0 7px 25px 0;
+}
+
+.todo-item .icon {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 24px;
+    height: 22px;
+    margin-top: 10px;
+    color: #245bdb;
+}
+
+.draggable {
+    cursor: move;
+}
+
+.draggable.dragging {
+    opacity: 1
+}
+
+article p.title {
+    font-weight: 600;
+}
+
+.level-item p.title {
+    font-size: 1rem;
+}
+
+.hero h1.title {
+    font-weight: 700;
+}
+
+#home {
+    background-color: #F8FAFF;
+}
+
+#front-img {
+    z-index: 1;
+    position: absolute;
+}
+
+#mainpage-title {
+    font-size: 4.5rem;
+    font-weight: 600;
+}
+
+.accomplishments {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.accomplishments span {
+    margin: auto;
+}
+
+button {
+    background-color: white;
+}
+
+ ::-moz-placeholder {
+    /* Firefox 19+ */
+    color: transparent;
+}
+
+ :-ms-input-placeholder {
+    /* IE 10+ */
+    color: transparent;
+}
+
+ :-moz-placeholder {
+    /* Firefox 18- */
+    color: transparent;
+}
+
+ :hover::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #3370ff;
+}
+
+ :hover::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #3370ff;
+}
+
+ :hover:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #3370ff;
+}
+
+ :hover:-moz-placeholder {
+    /* Firefox 18- */
+    color: #3370ff;
+}
+
+
+/* Firefox < 19 */
+
+input:focus:-moz-placeholder {
+    color: #999;
+}
+
+
+/* Internet Explorer 10 */
+
+input:focus:-ms-input-placeholder {
+    color: #999;
+}

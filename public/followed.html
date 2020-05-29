@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="A goal management community">
+    <meta name="keywords" content="Goal, friends, todo, tasks, community">
+    <meta name="author" content="Nicholas Xu">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <title>GoalLab, Make magic happen</title>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/latest/css/pro.min.css" media="all">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- normalize.css for cross-browser stuff -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <!-- load scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src='javascript/draggable.js' defer></script>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js" defer></script>
+    <script src='javascript/greet.js' defer></script>
+    <script src='javascript/new.js' defer></script>
+
+
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="#">
+                    <img src="img/logo.png" alt="goallab">
+                </a>
+
+                <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="test.html">Home</a>
+
+                    <a class="navbar-item" href="index.html">Board</a>
+                    <a class="navbar-item  is-active" href="followed.html">Followed</a>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">More</a>
+
+                        <div class="navbar-dropdown">
+                            <a class="navbar-item">About</a>
+                            <a class="navbar-item">Contact</a>
+                            <hr class="navbar-divider">
+                            <a class="navbar-item">Report an issue</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nav>
+    <section class="container followed">
+        <div class="tile is-ancestor">
+            <div class="tile is-parent">
+                <article class="tile is-child notification is-primary">
+                    <div class="card is-mobile">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/avatar.jpeg" alt="Small Avatar">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">James Kim</p>
+                                    <p class="subtitle is-6">@jamesk97</p>
+                                </div>
+                            </div>
+
+
+                            <div class="is-divider"></div>
+                            <div class="accomplishments">
+                                <span class="tag is-primary is-light"><i class="fas fa-medal"></i>Kind of a big deal</span>
+                                <span class="tag is-danger is-light"><i class="far fa-hand-rock"></i>StayAtHome2020</span>
+                                <!--<span class="tag is-link is-light"><i class="fas fa-trophy"></i>100TodosCompleted</span>-->
+                            </div>
+
+                            <nav class="level is-mobile">
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">todos</p>
+                                        <p class="title">12</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Goals</p>
+                                        <p class="title">6</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Likes</p>
+                                        <p class="title">35</p>
+                                    </div>
+                                </div>
+                            </nav>
+
+
+                            <div class="content">
+
+                                <p>TA for info340: client-side programming <a>jamesk97@uw.edu</a>.</p>
+                                <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">Last seen: few minutes ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="tile is-child notification is-warning">
+                    <div class="card is-mobile">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/avatar.jpeg" alt="Small Avatar">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">James Kim</p>
+                                    <p class="subtitle is-6">@jamesk97</p>
+                                </div>
+                            </div>
+
+
+                            <div class="is-divider"></div>
+                            <div class="accomplishments">
+                                <span class="tag is-primary is-light"><i class="fas fa-medal"></i>Kind of a big deal</span>
+                                <span class="tag is-danger is-light"><i class="far fa-hand-rock"></i>StayAtHome2020</span>
+                                <!--<span class="tag is-link is-light"><i class="fas fa-trophy"></i>100TodosCompleted</span>-->
+                            </div>
+
+                            <nav class="level is-mobile">
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">todos</p>
+                                        <p class="title">12</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Goals</p>
+                                        <p class="title">6</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Likes</p>
+                                        <p class="title">35</p>
+                                    </div>
+                                </div>
+                            </nav>
+
+
+                            <div class="content">
+
+                                <p>TA for info340: client-side programming <a>jamesk97@uw.edu</a>.</p>
+                                <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">Last seen: few minutes ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tile is-child notification is-danger">
+                    <div class="card is-mobile">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="media">
+                                <div class="media-left">
+                                    <figure class="image is-48x48">
+                                        <img src="img/avatar.jpeg" alt="Small Avatar">
+                                    </figure>
+                                </div>
+                                <div class="media-content">
+                                    <p class="title is-4">James Kim</p>
+                                    <p class="subtitle is-6">@jamesk97</p>
+                                </div>
+                            </div>
+
+
+                            <div class="is-divider"></div>
+                            <div class="accomplishments">
+                                <span class="tag is-primary is-light"><i class="fas fa-medal"></i>Kind of a big deal</span>
+                                <span class="tag is-danger is-light"><i class="far fa-hand-rock"></i>StayAtHome2020</span>
+                                <!--<span class="tag is-link is-light"><i class="fas fa-trophy"></i>100TodosCompleted</span>-->
+                            </div>
+
+                            <nav class="level is-mobile">
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">todos</p>
+                                        <p class="title">12</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Goals</p>
+                                        <p class="title">6</p>
+                                    </div>
+                                </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p class="heading">Likes</p>
+                                        <p class="title">35</p>
+                                    </div>
+                                </div>
+                            </nav>
+
+
+                            <div class="content">
+
+                                <p>TA for info340: client-side programming <a>jamesk97@uw.edu</a>.</p>
+                                <a href="#">#css</a> <a href="#">#responsive</a>
+                                <br>
+                                <time datetime="2016-1-1">Last seen: few minutes ago</time>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="#">Group 9</a>
+            </p>
+        </div>
+    </footer>
+</body>
+
+
+</html>

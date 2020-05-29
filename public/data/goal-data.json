@@ -1,0 +1,52 @@
+{ 
+  "goals": [
+    {"username": "nicholas",
+      "date": "2020-05-10",
+      "goal": "getting 4.0 on info 340",
+      "metrics": "qwertyuiop",
+      "complete": false
+    },
+    {"username": "nicholas",
+      "date": "2020-05-10",
+      "goal": "Losing 20 lbs",
+      "metrics": "qwertyuiop",
+      "complete": false
+    },
+    {"username": "nicholas",
+      "date": "2020-05-01",
+      "goal": "Make 10 new friends",
+      "metrics": "qwertyuiop",
+      "complete": false
+    },
+    {"username": "jenny",
+    "date": "2020-05-12",
+    "goal": "get project proposal done",
+    "metrics": "contact with group member, dicide on the topic",
+    "complete": false
+    },
+    {"username": "jenny",
+    "date": "2020-05-13",
+    "goal": "reach crown tier in pubg",
+    "metrics": "reach to the crown tier before the end of the season",
+    "complete": true
+    },
+    {"username": "jenny",
+      "date": "2020-05-02",
+      "goal": "review for the android fragments",
+      "metrics": "get more proficient in using fragments before the next assignment",
+      "complete": false
+    },
+    {"username": "jenny",
+      "date": "2020-05-06",
+      "goal": "watch 340 week 6 lecture",
+      "metrics": "watch all the lectures for this week and complete the problem-set",
+      "complete": true
+    },
+    {"username": "jenny",
+      "date": "2020-05-10",
+      "goal": "get mother's day present",
+      "metrics": "get the presents for mom",
+      "complete": false
+    }
+  ]
+}
