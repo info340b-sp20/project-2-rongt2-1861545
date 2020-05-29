@@ -1,12 +1,10 @@
 import React, { Component } from 'react'; //import React Component
-
 import './main.css'; //import css file!
-
 import {Route, Link, Switch, Redirect, NavLink} from 'react-router-dom'
 
 function importAll(r) {
-    return r.keys().map(r);
-  }
+  return r.keys().map(r);
+}
   
 const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/));
   
@@ -33,9 +31,9 @@ class App extends Component {
 }
 
 class Nav extends Component {
-    render() {
-        return (
-            <nav className="navbar" role="navigation" aria-label="main navigation">
+  render() {
+    return (
+      <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="container">
           <div className="navbar-brand">
             <a className="navbar-item" href="#">
@@ -65,28 +63,75 @@ class Nav extends Component {
           </div>
         </div>
       </nav>
-        )
-    }
+    )
+  }
 }
+
 class Hero extends Component {
-    render(){
-        return(
-            <section className="hero is-medium is-primary is-bold">
-            <div className="hero-body bg-img img-responsive">
-              <div className="container">
-                <h1 className="title" />
-                <h2 className="subtitle" id="greeter" />
+  render() {
+    return(
+      <section className="hero is-medium is-primary is-bold">
+        <div className="hero-body bg-img img-responsive">
+          <div className="container">
+            <h1 className="title" />
+            <h2 className="subtitle" id="greeter" />
+          </div>
+        </div>
+      </section>
+    )
+  }
+}
+
+class Today extends Component {
+  render () {
+    return(
+      <div className="tile is-parent is-vertical">
+        <article className="tile is-child notification">
+          <p className="title">Today</p>
+          <div className="today-content content">
+            <div className="draggable">
+              <div className="todo-item today" draggable="false">
+                <div className="icon">
+                  <button className="circle" />
+                </div>
+                <input className="ipt-today ipt-all input" type="text" placeholder="Write a smallest task..." />
               </div>
+              <div className="is-divider" />
             </div>
-          </section>
-        )
-    }
+          </div>
+        </article>
+      </div>
+    )
+  }
+}
+
+class Todo extends Component {
+  render () {
+    return(
+      <div className="tile is-parent">
+        <article className="tile is-child notification draggable-area">
+          <p className="title">Todos</p>
+          <div className="todo-content content">
+            <div className="draggable">
+              <div className="todo-item todo" draggable="false">
+                <div className="icon">
+                  <button className="circle" />
+                </div>
+                <input className="ipt-todo ipt-all input" type="text" placeholder="Do one task at a time..." />
+              </div>
+              <div className="is-divider" />
+            </div>
+          </div>
+        </article>
+      </div>
+    )
+  }
 }
 
 class Main extends Component {
-    render(){
-        return(
-            <section className="section">
+    render() {
+      return(
+        <section className="section">
         <div className="container">
           <div className="tabs is-centered">
             <ul>
@@ -98,7 +143,9 @@ class Main extends Component {
           <div className="tile is-ancestor">
             {/* Start of Today tab*/}
             <div className="tile is-9 content-tab" id="today">
-              <div className="tile is-parent is-vertical">
+              <Today />
+              <Todo />
+              {/* <div className="tile is-parent is-vertical">
                 <article className="tile is-child notification">
                   <p className="title">Today</p>
                   <div className="today-content content">
@@ -111,42 +158,10 @@ class Main extends Component {
                       </div>
                       <div className="is-divider" />
                     </div>
-                    {/* <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-today ipt-alls input" type="text" placeholder="Rome is not built in one day...">
-                                        <div class="check">
-                                            <label for="checkbox"></label>
-                                        </div>
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-today input ipt-all" type="text" placeholder="Focus on the urgent todo first...">
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-today ipt-all input" type="text" placeholder="Practice makes perfect...">
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div> */}
                   </div>
                 </article>
-              </div>
-              <div className="tile is-parent">
+              </div> */}
+              {/* <div className="tile is-parent">
                 <article className="tile is-child notification draggable-area">
                   <p className="title">Todos</p>
                   <div className="todo-content content">
@@ -161,7 +176,7 @@ class Main extends Component {
                     </div>
                   </div>
                 </article>
-              </div>
+              </div> */}
             </div>
             {/* End of Today tab*/}
             {/* Start of Completed tab*/}
@@ -170,60 +185,6 @@ class Main extends Component {
                 <article className="tile is-child notification">
                   <p className="title">Completed</p>
                   <div className="complete-content content">
-                    {/* <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-complete ipt-all input" type="text" placeholder="Write a smallest task...">
-
-                                        <div class="check">
-                                            <input id="checkbox" type="checkbox" />
-                                            <label for="checkbox"></label>
-                                        </div>
-
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-complete ipt-all input" type="text" placeholder="Rome is not built in one day...">
-                                        <div class="check">
-                                            <input id="checkbox" type="checkbox" />
-                                            <label for="checkbox"></label>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-complete input ipt-all" type="text" placeholder="Focus on the urgent todo first...">
-
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-complete input ipt-all" type="text" placeholder="Practice makes perfect...">
-
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div> */}
                   </div>
                 </article>
               </div>
@@ -241,46 +202,9 @@ class Main extends Component {
                           <button className="circle" />
                         </div>
                         <input className="ipt-goal input ipt-all" type="text" placeholder="Write a smallest task..." />
-                        {/* <div class="check">
-                                            <input id="checkbox" type="checkbox" />
-                                            <label for="checkbox"></label>
-                                        </div> */}
                       </div>
                       <div className="is-divider" />
                     </div>
-                    {/* <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-goal input ipt-all" type="text" placeholder="Rome is not built in one day...">
-                                        <div class="check">
-                                            <input id="checkbox" type="checkbox" />
-                                            <label for="checkbox"></label>
-                                        </div>
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-goal input ipt-all" type="text" placeholder="Focus on the urgent todo first...">
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div>
-
-                                <div class="draggable">
-                                    <div class='todo-item' draggable='true'>
-                                        <div class="icon">
-                                            <button class="circle"></button>
-                                        </div>
-                                        <input class="ipt-goal input ipt-all" type="text" placeholder="Practice makes perfect...">
-                                    </div>
-                                    <div class="is-divider"></div>
-                                </div> */}
                   </div>
                 </article>
               </div>
@@ -347,23 +271,22 @@ class Main extends Component {
           </div>
         </div>
       </section>
-        )
-    }
+    )
+  }
 }
 
 class Footer extends Component {
-    render(){
-        return(
-            <footer className="footer">
+  render() {
+    return(
+      <footer className="footer">
         <div className="content has-text-centered">
-          <p>
-            <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="#">Group 9</a>
-          </p>
+        <p>
+          <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="#">Group 9</a>
+        </p>
         </div>
       </footer>
-        )
-    }
+    )
+  }
 }
-
 
 export default App;
