@@ -23,10 +23,12 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        {/* <Content /> */}
         <Switch >
           <Route path="/about" component={Auth} />
           <Route exact path="/" component={Main} />
+          <Route path="/complete" component={Main} />
+          <Route path="/goals" component={Main} />
+          <Route path="/todo" component={Main} />
         </Switch>
         <Footer />
       </div>
@@ -211,7 +213,7 @@ class Content extends Component {
         <div className="container">
           <div className="tabs is-centered">
             <ul>
-              <li className={pathname=="/"?"tab is-active":"tab"}><a href="/todo">Todos</a></li>
+              <li className={pathname=="/"?"tab is-active":"tab"}><a href="/">Todos</a></li>
               <li className={pathname=="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
               <li className={pathname=="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
             </ul>
@@ -220,7 +222,7 @@ class Content extends Component {
             <Switch>
               <Route path="/complete" component={Complete} />
               <Route path="/goals" component={Goals} />
-              <Route path="/todo" component={Todos} />
+              <Route path="/" component={Todos} />
             </Switch>
             <Profile />
           </div>
