@@ -22,12 +22,26 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav></Nav>
-        <Hero></Hero>
-        <Main></Main>
-        <Footer></Footer>
+        <Nav />
+        {/* <Content /> */}
+        <Switch >
+          <Route path="/about" component={Auth} />
+          <Route exact path="/" component={Main} />
+        </Switch>
+        <Footer />
       </div>
     );
+  }
+}
+
+class Main extends Component {
+  render() {
+    return(
+      <div>
+        <Hero />
+        <Content />
+      </div>
+    )
   }
 }
 
@@ -55,12 +69,6 @@ class Nav extends Component {
                 <a className="navbar-link">More</a>
                 <div className="navbar-dropdown">
                   <a className="navbar-item" href="/about">About</a>
-
-                  <Switch>
-                    <Route path="/about" component={Auth} />
-                    <Route exact path="/" component={App} />
-                  </Switch>
-
                   <a className="navbar-item">Contact</a>
                   <hr className="navbar-divider" />
                   <a className="navbar-item">Report an issue</a>
@@ -195,7 +203,7 @@ class Goals extends Component {
   }
 }
 
-class Main extends Component {
+class Content extends Component {
     render() {
       let pathname = window.location.pathname;
       return(
@@ -203,7 +211,7 @@ class Main extends Component {
         <div className="container">
           <div className="tabs is-centered">
             <ul>
-              <li className={pathname=="/"?"tab is-active":"tab"}><a href="/">Todos</a></li>
+              <li className={pathname=="/"?"tab is-active":"tab"}><a href="/todo">Todos</a></li>
               <li className={pathname=="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
               <li className={pathname=="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
             </ul>
@@ -212,7 +220,7 @@ class Main extends Component {
             <Switch>
               <Route path="/complete" component={Complete} />
               <Route path="/goals" component={Goals} />
-              <Route exact path="/" component={Todos} />
+              <Route path="/todo" component={Todos} />
             </Switch>
             <Profile />
           </div>
