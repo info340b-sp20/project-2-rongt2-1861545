@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; //import React Component
 import './main.css'; //import css file!
 import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom'
+import Auth from "./Auth"
 
 function importAll(r) {
   return r.keys().map(r);
@@ -48,12 +49,18 @@ class Nav extends Component {
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
               <a className="navbar-item" href="test.html">Home</a>
-              <a className="navbar-item is-active" href="#">Board</a>
+              <a className="navbar-item is-active" href="/">Board</a>
               <a className="navbar-item" href="followed.html">Followed</a>
               <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link">More</a>
                 <div className="navbar-dropdown">
-                  <a className="navbar-item">About</a>
+                  <a className="navbar-item" href="/about">About</a>
+
+                  <Switch>
+                    <Route path="/about" component={Auth} />
+                    <Route exact path="/" component={App} />
+                  </Switch>
+
                   <a className="navbar-item">Contact</a>
                   <hr className="navbar-divider" />
                   <a className="navbar-item">Report an issue</a>
@@ -112,18 +119,7 @@ class Todo extends Component {
         <article className="tile is-child notification draggable-area">
           <p className="title">Todos</p>
           <div className="todo-content content">
-
-            {/* <div className="draggable">
-              <div className="todo-item todo" draggable="false">
-                <div className="icon">
-                  <button className="circle" />
-                </div>
-                <input className="ipt-todo ipt-all input" type="text" placeholder="Do one task at a time..." />
-              </div>
-              <div className="is-divider" />
-            </div> */}
             <TodoLine />
-
           </div>
         </article>
       </div>
