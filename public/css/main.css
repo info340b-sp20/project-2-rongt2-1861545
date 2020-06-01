@@ -11,10 +11,10 @@
     max-height: 2.15rem;
 }
 
-#goals,
+/* #goals,
 #completed {
     display: none;
-}
+} */
 
 #front-page-img {
     z-index: 1;

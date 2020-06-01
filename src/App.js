@@ -112,7 +112,8 @@ class Todo extends Component {
         <article className="tile is-child notification draggable-area">
           <p className="title">Todos</p>
           <div className="todo-content content">
-            <div className="draggable">
+
+            {/* <div className="draggable">
               <div className="todo-item todo" draggable="false">
                 <div className="icon">
                   <button className="circle" />
@@ -120,9 +121,27 @@ class Todo extends Component {
                 <input className="ipt-todo ipt-all input" type="text" placeholder="Do one task at a time..." />
               </div>
               <div className="is-divider" />
-            </div>
+            </div> */}
+            <TodoLine />
+
           </div>
         </article>
+      </div>
+    )
+  }
+}
+
+class TodoLine extends Component {
+  render() {
+    return(
+      <div className="draggable">
+        <div className="todo-item todo" draggable="false">
+          <div className="icon">
+            <button className="circle" />
+          </div>
+          <input className="ipt-todo ipt-all input" type="text" placeholder="Do one task at a time..." />
+        </div>
+        <div className="is-divider" />
       </div>
     )
   }
@@ -140,9 +159,7 @@ class Todos extends Component {
 }
 
 class Complete extends Component {
-
   render () {
-    console.log("1");
     return(
       <div className="tile is-vertical is-9 content-tab" id="completed">
         <div className="tile is-parent is-vertical">
@@ -201,15 +218,14 @@ class Main extends Component {
               <Route path="/goals" component={Goals} />
               <Route exact path="/" component={Todos} />
             </Switch>
-            {/* Start of Profile section (shared across all tabs)*/}
-            {/* <Profile /> */}
-            {/* End of Profile section*/}
+            <Profile />
           </div>
         </div>
       </section>
     )
   }
 }
+
 class Profile extends Component {
   render() {
     return(
