@@ -68,13 +68,13 @@ class Auth extends Component {
   }
 
   render() {
-    let welcomeDiv = this.state.user === null ? "":<div className="alert alert-info">Hello, {this.state.user.displayName}</div>
-    let errorDiv = this.state.errorMessage === "" ? "":<div className="alert alert-danger">Error: {this.state.user.errorMessage}</div>
+    // let welcomeDiv = this.state.user === null ? "":<div className="alert alert-info">Hello, {this.state.user.displayName}</div>
+    // let errorDiv = this.state.errorMessage === "" ? "":<div className="alert alert-danger">Error: {this.state.user.errorMessage}</div>
 
     return (
           <div className="container">
-            {errorDiv}
-            {welcomeDiv}
+            {/* {errorDiv} */}
+            {/* {welcomeDiv} */}
               <div className="form-group">
                   <label>Email:</label>
                   <input className="form-control"

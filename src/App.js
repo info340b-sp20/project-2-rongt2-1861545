@@ -4,9 +4,9 @@ import Auth from "./components/Auth";
 import Hero from "./components/Hero";
 import Profile from "./components/Profile";
 import Nav from "./components/Nav";
+import Todo from "./components/Todo"
 import firebase from 'firebase/app';
 import 'firebase/database';
-// import Todo from "./Todo"
 import './main.css';
 
 function importAll(r) {
@@ -19,7 +19,8 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      todos: {}
+      todos: {},
+      todoText: ""
     }; //initialize as empty
   }
 
@@ -28,9 +29,9 @@ class App extends Component {
       if (user) {
         this.setState({
           user: user
-        })
+        });
       } else {
-        this.setState({user: null})
+        this.setState({ user: null })
       }
     });
 
@@ -41,16 +42,22 @@ class App extends Component {
     })
   }
 
+  // push tofo to the database
   sendTodo() {
     let todo = {
       user: firebase.auth().currentUsers.displayName,
-      text: this.state.tweetText
+      timestamp : firebase.database.ServerValue.TIMESTAMP,
+      text: this.state.todoText
     }
 
     this.todosRef
         .push(todo)
         .then(() => { this.setState({todoText: ""}) }) 
         .catch((d) => console.log("error ", d))
+  }
+
+  updateTodo() {
+    // let text = 
   }
 
   render() {
@@ -75,7 +82,7 @@ class Main extends Component {
     return(
       <div>
         <Hero />
-        <Content />
+        <Content/>
       </div>
     )
   }
@@ -100,6 +107,7 @@ class Content extends Component {
             <Route path="/goals" component={Goals} />
             <Route path="/" component={Todos} />
           </Switch>
+          {/* <Today todos={this.state.todos} /> */}
           <Profile />
         </div>
       </div>
@@ -109,7 +117,10 @@ class Content extends Component {
 
 class Today extends Component {
   render () {
+    let allKeys = Object.keys(this.state.todos);
+
     return(
+      // {!this.state.user && <Auth />}
       <div className="tile is-parent is-vertical">
         <article className="tile is-child notification">
           <p className="title">Today</p>
@@ -119,9 +130,22 @@ class Today extends Component {
                 <div className="icon">
                   <button className="circle" />
                 </div>
-                <input className="ipt-today ipt-all input" type="text" placeholder="Write a smallest task..." />
+                <input 
+                  className="ipt-today ipt-all input" 
+                  type="text" 
+                  placeholder="Write a smallest task..." 
+                  value={this.state.todoText}
+                  onChange={ (event) => this.setState({todoText: event.target.value})}
+                  onKeyDown={ this.onKeyDown } 
+                />
               </div>
               <div className="is-divider" />
+            </div>
+            <div>
+              {allKeys.map((d) => {
+                return <Todo id={d} key={d} info={this.state.todos[d]}></Todo>
+              })
+              }
             </div>
           </div>
         </article>
@@ -130,7 +154,7 @@ class Today extends Component {
   }
 }
 
-class Todo extends Component {
+class TodoSec extends Component {
   render () {
     return(
       <div className="tile is-parent">
@@ -157,7 +181,7 @@ class TodoLine extends Component {
             className="ipt-todo ipt-all input" 
             type="text" 
             placeholder="Do one task at a time..."
-            onChange={(event) => this.setState({tweetText: event.target.value})}
+            onChange={(event) => this.setState({todoText: event.target.value})}
             onKeyDown={this.onKeyDown} 
           />
         </div>
@@ -172,7 +196,7 @@ class Todos extends Component {
     return(
       <div className="tile is-9 content-tab" id="today">
         <Today />
-        <Todo />
+        <TodoSec />
       </div>
     )
   }
