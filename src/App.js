@@ -61,19 +61,20 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Nav />
-        <Switch >
-          <Route path="/about" component={Auth} />
-          <Route exact path="/" component={Main} />
-          <Route path="/complete" component={Main} />
-          <Route path="/goals" component={Main} />
-          <Route path="/todo" component={Main} />
-        </Switch>
-        <Footer />
-      </div>
-    );
+      return (
+        <div>
+          <Nav />
+          {/* <Switch >
+            <Route path="/about" component={Auth} />
+            <Route exact path="/" component={Main} />
+            <Route path="/complete" component={Main} />
+            <Route path="/goals" component={Main} />
+            <Route path="/todo" component={Main} />
+          </Switch> */}
+          <Main todos={this.props.todos}/>
+          <Footer />
+        </div>
+      );
   }
 }
 
@@ -82,7 +83,7 @@ class Main extends Component {
     return(
       <div>
         <Hero />
-        <Content/>
+        <Content todos={this.props.todos}/>
       </div>
     )
   }
@@ -102,12 +103,12 @@ class Content extends Component {
           </ul>
         </div>
         <div className="tile is-ancestor">
-          <Switch>
+          {/* <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
             <Route path="/" component={Todos} />
-          </Switch>
-          {/* <Today todos={this.state.todos} /> */}
+          </Switch> */}
+          <Today todos={this.props.todos} />
           <Profile />
         </div>
       </div>
@@ -117,40 +118,46 @@ class Content extends Component {
 
 class Today extends Component {
   render () {
-    let allKeys = Object.keys(this.state.todos);
-
-    return(
-      // {!this.state.user && <Auth />}
-      <div className="tile is-parent is-vertical">
-        <article className="tile is-child notification">
-          <p className="title">Today</p>
-          <div className="today-content content">
-            <div className="draggable">
-              <div className="todo-item today" draggable="false">
-                <div className="icon">
-                  <button className="circle" />
+      return(
+        <div className="tile is-parent is-vertical">
+          <article className="tile is-child notification">
+            <p className="title">Today</p>
+            <div className="today-content content">
+              <div className="draggable">
+                <div className="todo-item today" draggable="false">
+                  <div className="icon">
+                    <button className="circle" />
+                  </div>
+                  <input 
+                    className="ipt-today ipt-all input" 
+                    type="text" 
+                    placeholder="Write a smallest task..." 
+                    value={ this.props.todoText }
+                    onChange={ (event) => this.setState({ todoText: event.target.value }) }
+                    onKeyDown={ () => this.sendTodo } 
+                  />
                 </div>
-                <input 
-                  className="ipt-today ipt-all input" 
-                  type="text" 
-                  placeholder="Write a smallest task..." 
-                  value={this.state.todoText}
-                  onChange={ (event) => this.setState({todoText: event.target.value})}
-                  onKeyDown={ this.onKeyDown } 
-                />
+                <div className="is-divider" />
               </div>
-              <div className="is-divider" />
+              <div>
+                <TodoLine todos={this.props.todos} />
+              </div>
             </div>
-            <div>
-              {allKeys.map((d) => {
-                return <Todo id={d} key={d} info={this.state.todos[d]}></Todo>
-              })
-              }
-            </div>
-          </div>
-        </article>
-      </div>
+          </article>
+        </div>
     )
+  }
+}
+
+class TodoLine extends Component {
+  render() {
+    if (this.props.todos) {
+      Object.keys(this.props.todos).map((d) => {
+        return <Todo id={d} key={d} info={this.props.todos[d]} />
+      })
+    } else {
+      return <div></div>
+    }
   }
 }
 
@@ -169,27 +176,27 @@ class TodoSec extends Component {
   }
 }
 
-class TodoLine extends Component {
-  render() {
-    return(
-      <div className="draggable">
-        <div className="todo-item todo" draggable="false">
-          <div className="icon">
-            <button className="circle" />
-          </div>
-          <input 
-            className="ipt-todo ipt-all input" 
-            type="text" 
-            placeholder="Do one task at a time..."
-            onChange={(event) => this.setState({todoText: event.target.value})}
-            onKeyDown={this.onKeyDown} 
-          />
-        </div>
-        <div className="is-divider" />
-      </div>
-    )
-  }
-}
+// class TodoLine extends Component {
+//   render() {
+//     return(
+//       <div className="draggable">
+//         <div className="todo-item todo" draggable="false">
+//           <div className="icon">
+//             <button className="circle" />
+//           </div>
+//           <input 
+//             className="ipt-todo ipt-all input" 
+//             type="text" 
+//             placeholder="Do one task at a time..."
+//             onChange={(event) => this.setState({todoText: event.target.value})}
+//             onKeyDown={this.onKeyDown} 
+//           />
+//         </div>
+//         <div className="is-divider" />
+//       </div>
+//     )
+//   }
+// }
 
 class Todos extends Component {
   render () {
