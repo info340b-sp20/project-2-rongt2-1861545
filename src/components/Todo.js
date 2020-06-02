@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; //import React Component
-import './Chirper.css'; //load module-specific CSS
 import 'firebase/database';
 import firebase from 'firebase/app';
 

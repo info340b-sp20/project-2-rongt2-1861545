@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom';
-import Auth from "./Auth";
-import Hero from "./Hero";
+import Auth from "./components/Auth";
+import Hero from "./components/Hero";
+import Profile from "./components/Profile";
+import Nav from "./components/Nav";
 import firebase from 'firebase/app';
 import 'firebase/database';
 // import Todo from "./Todo"
@@ -10,7 +12,6 @@ import './main.css';
 function importAll(r) {
   return r.keys().map(r);
 }
-
 const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/));
 
 class App extends Component {
@@ -32,8 +33,8 @@ class App extends Component {
         this.setState({user: null})
       }
     });
-    this.todosRef = firebase.database().ref("todos")
 
+    this.todosRef = firebase.database().ref("todos")
     this.todosRef.on("value", (snapshot) => {
       let todos = snapshot.val();
       this.setState({todos: todos})
@@ -80,41 +81,30 @@ class Main extends Component {
   }
 }
 
-class Nav extends Component {
+class Content extends Component {
   render() {
-    return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="container">
-          <div className="navbar-brand">
-            <a className="navbar-item" href="#">
-              <img src="img/logo.png" alt="goallab" />
-            </a>
-            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-              <span aria-hidden="true" />
-            </a>
-          </div>
-          <div id="navbarBasicExample" className="navbar-menu">
-            <div className="navbar-start">
-              <a className="navbar-item" href="test.html">Home</a>
-              <a className="navbar-item is-active" href="/">Board</a>
-              <a className="navbar-item" href="followed.html">Followed</a>
-              <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link">More</a>
-                <div className="navbar-dropdown">
-                  <a className="navbar-item" href="/about">About</a>
-                  <a className="navbar-item">Contact</a>
-                  <hr className="navbar-divider" />
-                  <a className="navbar-item">Report an issue</a>
-                </div>
-              </div>
-            </div>
-          </div>
+    let pathname = window.location.pathname;
+    return(
+      <section className="section">
+      <div className="container">
+        <div className="tabs is-centered">
+          <ul>
+            <li className={pathname=="/"?"tab is-active":"tab"}><a href="/">Todos</a></li>
+            <li className={pathname=="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
+            <li className={pathname=="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
+          </ul>
         </div>
-      </nav>
-    )
-  }
+        <div className="tile is-ancestor">
+          <Switch>
+            <Route path="/complete" component={Complete} />
+            <Route path="/goals" component={Goals} />
+            <Route path="/" component={Todos} />
+          </Switch>
+          <Profile />
+        </div>
+      </div>
+    </section>
+  )}
 }
 
 class Today extends Component {
@@ -225,96 +215,6 @@ class Goals extends Component {
           </article>
         </div>
       </div>
-    )
-  }
-}
-
-class Content extends Component {
-    render() {
-      let pathname = window.location.pathname;
-      return(
-        <section className="section">
-        <div className="container">
-          <div className="tabs is-centered">
-            <ul>
-              <li className={pathname=="/"?"tab is-active":"tab"}><a href="/">Todos</a></li>
-              <li className={pathname=="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
-              <li className={pathname=="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
-            </ul>
-          </div>
-          <div className="tile is-ancestor">
-            <Switch>
-              <Route path="/complete" component={Complete} />
-              <Route path="/goals" component={Goals} />
-              <Route path="/" component={Todos} />
-            </Switch>
-            <Profile />
-          </div>
-        </div>
-      </section>
-    )
-  }
-}
-
-class Profile extends Component {
-  render() {
-    return(
-      <div className="tile is-parent">
-      <article className="tile is-child">
-        <div className="card is-mobile">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
-            </figure>
-          </div>
-          <div className="card-content">
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-48x48">
-                  <img src="img/avatar.jpeg" alt="Small Avatar" />
-                </figure>
-              </div>
-              <div className="media-content">
-                <p className="title is-4" id="profile_name">James Kim</p>
-                <p className="subtitle is-6">@jamesk97</p>
-              </div>
-            </div>
-            <div className="is-divider" />
-            <div className="accomplishments">
-              <span className="tag is-primary is-light"><i className="fas fa-medal" />Kind of a big deal</span>
-              <span className="tag is-danger is-light"><i className="far fa-hand-rock" />StayAtHome2020</span>
-              {/*<span class="tag is-link is-light"><i class="fas fa-trophy"></i>100TodosCompleted</span>*/}
-            </div>
-            <nav className="level is-mobile">
-              <div className="level-item has-text-centered">
-                <div>
-                  <p className="heading">todos</p>
-                  <p className="title">12</p>
-                </div>
-              </div>
-              <div className="level-item has-text-centered">
-                <div>
-                  <p className="heading">Goals</p>
-                  <p className="title">6</p>
-                </div>
-              </div>
-              <div className="level-item has-text-centered">
-                <div>
-                  <p className="heading">Likes</p>
-                  <p className="title">35</p>
-                </div>
-              </div>
-            </nav>
-            <div className="content">
-              <p>TA for info340: client-side programming <a>jamesk97@uw.edu</a>.</p>
-              <a href="#">#css</a> <a href="#">#responsive</a>
-              <br />
-              <time dateTime="2016-1-1">Last seen: few minutes ago</time>
-            </div>
-          </div>
-        </div>
-      </article>
-    </div>
     )
   }
 }
