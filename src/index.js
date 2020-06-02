@@ -7,4 +7,4 @@ import firebaseConfig from "./Config"
 
 firebase.initializeApp(firebaseConfig)
 
-ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.querySelector('body'));
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));

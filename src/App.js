@@ -1,7 +1,11 @@
-import React, { Component } from 'react'; //import React Component
-import './main.css'; //import css file!
-import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom'
-import Auth from "./Auth"
+import React, { Component } from 'react';
+import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom';
+import Auth from "./Auth";
+import Hero from "./Hero";
+import firebase from 'firebase/app';
+import 'firebase/database';
+// import Todo from "./Todo"
+import './main.css';
 
 function importAll(r) {
   return r.keys().map(r);
@@ -10,13 +14,42 @@ function importAll(r) {
 const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/));
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {}; //initialize as empty
+    this.state = {
+      user: null,
+      todos: {}
+    }; //initialize as empty
   }
 
   componentDidMount() {
+    firebase.auth().onAuthStateChanged((user)=> {
+      if (user) {
+        this.setState({
+          user: user
+        })
+      } else {
+        this.setState({user: null})
+      }
+    });
+    this.todosRef = firebase.database().ref("todos")
 
+    this.todosRef.on("value", (snapshot) => {
+      let todos = snapshot.val();
+      this.setState({todos: todos})
+    })
+  }
+
+  sendTodo() {
+    let todo = {
+      user: firebase.auth().currentUsers.displayName,
+      text: this.state.tweetText
+    }
+
+    this.todosRef
+        .push(todo)
+        .then(() => { this.setState({todoText: ""}) }) 
+        .catch((d) => console.log("error ", d))
   }
 
   render() {
@@ -84,21 +117,6 @@ class Nav extends Component {
   }
 }
 
-class Hero extends Component {
-  render() {
-    return(
-      <section className="hero is-medium is-primary is-bold">
-        <div className="hero-body bg-img img-responsive">
-          <div className="container">
-            <h1 className="title" />
-            <h2 className="subtitle" id="greeter" />
-          </div>
-        </div>
-      </section>
-    )
-  }
-}
-
 class Today extends Component {
   render () {
     return(
@@ -145,7 +163,13 @@ class TodoLine extends Component {
           <div className="icon">
             <button className="circle" />
           </div>
-          <input className="ipt-todo ipt-all input" type="text" placeholder="Do one task at a time..." />
+          <input 
+            className="ipt-todo ipt-all input" 
+            type="text" 
+            placeholder="Do one task at a time..."
+            onChange={(event) => this.setState({tweetText: event.target.value})}
+            onKeyDown={this.onKeyDown} 
+          />
         </div>
         <div className="is-divider" />
       </div>
