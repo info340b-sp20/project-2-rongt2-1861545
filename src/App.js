@@ -43,7 +43,8 @@ class App extends Component {
   }
 
   // push tofo to the database
-  sendTodo() {
+  sendTodo = () => {
+    console.log(12345);
     let todo = {
       user: firebase.auth().currentUsers.displayName,
       timestamp : firebase.database.ServerValue.TIMESTAMP,
@@ -51,9 +52,9 @@ class App extends Component {
     }
 
     this.todosRef
-        .push(todo)
-        .then(() => { this.setState({todoText: ""}) }) 
-        .catch((d) => console.log("error ", d))
+      .push(todo)
+      .then(() => { this.setState({todoText: ""}) }) 
+      .catch((d) => console.log("error ", d))
   }
 
   updateTodo() {
@@ -61,20 +62,19 @@ class App extends Component {
   }
 
   render() {
-      return (
-        <div>
-          <Nav />
-          {/* <Switch >
-            <Route path="/about" component={Auth} />
-            <Route exact path="/" component={Main} />
-            <Route path="/complete" component={Main} />
-            <Route path="/goals" component={Main} />
-            <Route path="/todo" component={Main} />
-          </Switch> */}
-          <Main todos={this.props.todos}/>
-          <Footer />
-        </div>
-      );
+    return (
+      <div>
+        <Nav />
+        <Switch >
+          <Route path="/about" component={Auth} />
+          <Route exact path="/" component={Main} />
+          <Route path="/complete" component={Main} />
+          <Route path="/goals" component={Main} />
+          <Route path="/todo" component={() => <Main todos={this.props.todos} sendTodo={this.sendTodo}/>} />
+        </Switch>
+        <Footer />
+      </div>
+    );
   }
 }
 
@@ -83,7 +83,7 @@ class Main extends Component {
     return(
       <div>
         <Hero />
-        <Content todos={this.props.todos}/>
+        <Content todos={this.props.todos} sendTodo={this.props.sendTodo} />
       </div>
     )
   }
@@ -103,12 +103,11 @@ class Content extends Component {
           </ul>
         </div>
         <div className="tile is-ancestor">
-          {/* <Switch>
+          <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
-            <Route path="/" component={Todos} />
-          </Switch> */}
-          <Today todos={this.props.todos} />
+            <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo}/> } />
+          </Switch>
           <Profile />
         </div>
       </div>
@@ -117,9 +116,9 @@ class Content extends Component {
 }
 
 class Today extends Component {
-  render () {
-      return(
-        <div className="tile is-parent is-vertical">
+  render() {
+    return(
+      <div className="tile is-parent is-vertical">
           <article className="tile is-child notification">
             <p className="title">Today</p>
             <div className="today-content content">
@@ -134,7 +133,7 @@ class Today extends Component {
                     placeholder="Write a smallest task..." 
                     value={ this.props.todoText }
                     onChange={ (event) => this.setState({ todoText: event.target.value }) }
-                    onKeyDown={ () => this.sendTodo } 
+                    onKeyDown={ this.props.sendTodo } 
                   />
                 </div>
                 <div className="is-divider" />
@@ -156,13 +155,13 @@ class TodoLine extends Component {
         return <Todo id={d} key={d} info={this.props.todos[d]} />
       })
     } else {
-      return <div></div>
+      return <div />
     }
   }
 }
 
 class TodoSec extends Component {
-  render () {
+  render() {
     return(
       <div className="tile is-parent">
         <article className="tile is-child notification draggable-area">
@@ -202,7 +201,7 @@ class Todos extends Component {
   render () {
     return(
       <div className="tile is-9 content-tab" id="today">
-        <Today />
+        <Today todos={this.props.todos} />
         <TodoSec />
       </div>
     )
@@ -210,7 +209,7 @@ class Todos extends Component {
 }
 
 class Complete extends Component {
-  render () {
+  render() {
     return(
       <div className="tile is-vertical is-9 content-tab" id="completed">
         <div className="tile is-parent is-vertical">
