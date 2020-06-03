@@ -22,6 +22,8 @@ class App extends Component {
       todos: {},
       todoText: ""
     }; //initialize as empty
+    this.sendTodo = this.sendTodo.bind(this)
+    this.input = this.input.bind(this)
   }
 
   componentDidMount() {
@@ -57,6 +59,10 @@ class App extends Component {
       .catch((d) => console.log("error ", d))
   }
 
+  input = (inputText) => {
+    this.setState({todoText: inputText})
+  }
+
   updateTodo() {
     // let text = 
   }
@@ -70,7 +76,7 @@ class App extends Component {
           <Route exact path="/" component={Main} />
           <Route path="/complete" component={Main} />
           <Route path="/goals" component={Main} />
-          <Route path="/todo" component={() => <Main todos={this.props.todos} sendTodo={this.sendTodo}/>} />
+          <Route path="/todo" component={() => <Main todos={this.props.todos} sendTodo={this.sendTodo}/>} callback={this.input}/>
         </Switch>
         <Footer />
       </div>
@@ -83,7 +89,7 @@ class Main extends Component {
     return(
       <div>
         <Hero />
-        <Content todos={this.props.todos} sendTodo={this.props.sendTodo} />
+        <Content todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
       </div>
     )
   }
@@ -106,7 +112,7 @@ class Content extends Component {
           <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
-            <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo}/> } />
+            <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/> } />
           </Switch>
           <Profile />
         </div>
@@ -132,14 +138,14 @@ class Today extends Component {
                     type="text" 
                     placeholder="Write a smallest task..." 
                     value={ this.props.todoText }
-                    onChange={ (event) => this.setState({ todoText: event.target.value }) }
+                    onChange={ (event) => {this.props.callback(event.target.value)} }
                     onKeyDown={ this.props.sendTodo } 
                   />
                 </div>
                 <div className="is-divider" />
               </div>
               <div>
-                <TodoLine todos={this.props.todos} />
+                <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
               </div>
             </div>
           </article>
@@ -201,7 +207,7 @@ class Todos extends Component {
   render () {
     return(
       <div className="tile is-9 content-tab" id="today">
-        <Today todos={this.props.todos} />
+        <Today todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
         <TodoSec />
       </div>
     )
