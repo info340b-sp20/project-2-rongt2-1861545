@@ -5,6 +5,7 @@ import Hero from "./components/Hero";
 import Profile from "./components/Profile";
 import Nav from "./components/Nav";
 import Todo from "./components/Todo"
+import MainFooter from "./components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './main.css';
@@ -46,7 +47,6 @@ class App extends Component {
 
   // push tofo to the database
   sendTodo = () => {
-    console.log(12345);
     let todo = {
       user: firebase.auth().currentUsers.displayName,
       timestamp : firebase.database.ServerValue.TIMESTAMP,
@@ -70,6 +70,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        {/* if user, board go to home board, else go to login - signup */}
         <Nav />
         <Switch >
           <Route path="/about" component={Auth} />
@@ -78,7 +79,7 @@ class App extends Component {
           <Route path="/goals" component={Main} />
           <Route path="/todo" component={() => <Main todos={this.props.todos} sendTodo={this.sendTodo}/>} callback={this.input}/>
         </Switch>
-        <Footer />
+        <MainFooter />
       </div>
     );
   }
@@ -125,31 +126,31 @@ class Today extends Component {
   render() {
     return(
       <div className="tile is-parent is-vertical">
-          <article className="tile is-child notification">
-            <p className="title">Today</p>
-            <div className="today-content content">
-              <div className="draggable">
-                <div className="todo-item today" draggable="false">
-                  <div className="icon">
-                    <button className="circle" />
-                  </div>
-                  <input 
-                    className="ipt-today ipt-all input" 
-                    type="text" 
-                    placeholder="Write a smallest task..." 
-                    value={ this.props.todoText }
-                    onChange={ (event) => {this.props.callback(event.target.value)} }
-                    onKeyDown={ this.props.sendTodo } 
-                  />
+        <article className="tile is-child notification">
+          <p className="title">Today</p>
+          <div className="today-content content">
+            <div className="draggable">
+              <div className="todo-item today" draggable="false">
+                <div className="icon">
+                  <button className="circle" />
                 </div>
-                <div className="is-divider" />
+                <input 
+                  className="ipt-today ipt-all input" 
+                  type="text" 
+                  placeholder="Write a smallest task..." 
+                  value={ this.props.todoText }
+                  onChange={ (event) => {this.props.callback(event.target.value)} }
+                  onKeyDown={ this.props.sendTodo } 
+                />
               </div>
-              <div>
-                <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
-              </div>
+              <div className="is-divider" />
             </div>
-          </article>
-        </div>
+            <div>
+              <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
+            </div>
+          </div>
+        </article>
+      </div>
     )
   }
 }
@@ -221,8 +222,7 @@ class Complete extends Component {
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification">
             <p className="title">Completed</p>
-            <div className="complete-content content">
-            </div>
+            <div className="complete-content content"></div>
           </article>
         </div>
       </div>
@@ -237,7 +237,7 @@ class Goals extends Component {
         <div className="tile is-parent is-vertical">
           <article className="tile is-child notification">
             <p className="title">Goals</p>
-            <div className="goal-content content">
+            {/* <div className="goal-content content">
               <div className="draggable">
                 <div className="todo-item goal" draggable="false">
                   <div className="icon">
@@ -247,24 +247,10 @@ class Goals extends Component {
                 </div>
                 <div className="is-divider" />
               </div>
-            </div>
+            </div> */}
           </article>
         </div>
       </div>
-    )
-  }
-}
-
-class Footer extends Component {
-  render() {
-    return(
-      <footer className="footer">
-        <div className="content has-text-centered">
-        <p>
-          <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="#">Group 9</a>
-        </p>
-        </div>
-      </footer>
     )
   }
 }

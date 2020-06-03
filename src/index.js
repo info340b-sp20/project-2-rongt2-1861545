@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom'
 import firebase from "firebase/app";
 import firebaseConfig from "./Config"
+import 'bootstrap/dist/css/bootstrap.css';
 
 firebase.initializeApp(firebaseConfig)
 
