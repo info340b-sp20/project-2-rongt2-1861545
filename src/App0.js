@@ -74,15 +74,15 @@ class App extends Component {
       <div>
         {/* if user, board go to home board, else go to login - signup */}
         <Nav />
-        {/* <Home /> */}
-        <Switch >
+        <Home />
+        {/* <Switch >
           <Route path="/about" component={Auth} />
           <Route exact path="/" component={Main} />
           <Route path="/complete" component={Main} />
-          <Route path="/goals" component={Main} />
-          <Route path="/todo" component={ () => <Main todos={this.props.todos} sendTodo={this.state.sendTodo} callback={this.input} /> } />
-          {/* <Route path="/todo" component={() => <Main currentUser={this.state.user}/>} /> */}
-        </Switch>
+          <Route path="/goals" component={Main} /> */}
+          {/* <Route path="/todo" component={ () => <Main todos={this.props.todos} sendTodo={this.state.sendTodo} callback={this.state.input} /> } /> */}
+          {/* <Route path="/todo" component={() => <Main currentUser={this.state.user}/>} />
+        </Switch> */}
         <MainFooter />
       </div>
     );
@@ -94,8 +94,8 @@ class Main extends Component {
     return(
       <div>
         <Hero />
-        {/* <Content currentUser={this.props.user} /> */}
-        <Content todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback} />
+        <Content currentUser={this.props.user} />
+        {/* <Content todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback} /> */}
       </div>
     )
   }
@@ -118,8 +118,8 @@ class Content extends Component {
           <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
-            <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/> } />
-            {/* <Route path="/" component={ () => <NewToday currentUser={this.props.user} /> } /> */}
+            {/* <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/> } /> */}
+            <Route path="/" component={ () => <NewToday currentUser={this.props.user} /> } />
           </Switch>
           <Profile />
         </div>

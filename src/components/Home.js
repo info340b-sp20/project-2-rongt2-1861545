@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import HomeContent from "./components/HomeContent";
-import HomeNav from "./components/HomeNav";
+import HomeContent from "./HomeContent";
+import HomeNav from "./HomeNav";
 import 'firebase/database';
-import './main.css';
 
 class Home extends Component {
   render() {

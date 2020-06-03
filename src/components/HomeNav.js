@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import firebase from "firebase/app";
 import "firebase/auth"
 
-class HomeNav extends Component {
+export default class HomeNav extends Component {
   render() {
     return(
       <nav className="navbar is-transparent is-hidden-touch is-fixed-top is-spaced">
