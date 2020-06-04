@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import 'firebase/database';
 import firebase from 'firebase/app';
 
@@ -7,6 +7,11 @@ export default class NewToday extends Component {
   constructor(props){
     super(props);
     this.state = {todo:''};
+    this.userId = firebase.auth().currentUser.uid
+    this.userName = firebase.auth().currentUser.displayName
+    this.userPhoto = firebase.auth().currentUser.photoURL
+    this.time = firebase.database.ServerValue.TIMESTAMP
+
   }
 
   //when the text in the form changes
@@ -21,10 +26,10 @@ export default class NewToday extends Component {
     /* TODO: add a new Chirp to the database */
     let newTodo = {
       text: this.state.todo,
-      userId: this.props.currentUser.uid,
-      userName: this.props.currentUser.displayName,
-      // userPhoto: this.props.currentUser.photoURL,
-      time: firebase.database.ServerValue.TIMESTAMP
+      userId: this.userId,
+      userName: this.userName,
+      userPhoto: this.userPhoto,
+      time: this.time
     }
     firebase.database().ref('todos').push(newTodo);
 
@@ -46,6 +51,7 @@ export default class NewToday extends Component {
               <textarea name="text" className="form-control mb-2" placeholder="What's Happening...?" 
                 value={this.state.post} 
                 onChange={this.updatePost}
+                onBlur = {this.postTodo} 
                 />
 
               {/* Only show this if the post length is > 140 */}
@@ -53,15 +59,15 @@ export default class NewToday extends Component {
                 <small className="form-text">140 character limit!</small>
               } */}
               
-              <div className="text-right">
+              {/* <div className="text-right"> */}
                 {/* Disable if invalid post length */}
-                <button className="btn btn-primary" 
-                  // disabled={this.state.post.length === 0 || this.state.post.length > 140}
+                {/* <button className="btn btn-primary" 
+                  disabled={this.state.post.length === 0 || this.state.post.length > 140}
                   onClick={this.postTodo} 
                   >
                   <i className="fa fa-pencil-square-o" aria-hidden="true"></i> Share
                 </button> 					
-              </div>
+              </div> */}
             </form>
           </div>
         </div>

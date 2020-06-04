@@ -1,88 +1,131 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom';
 import Auth from "./components/Auth";
+import SignUpForm from './components/SignUpForm';
 import Hero from "./components/Hero";
 import Profile from "./components/Profile";
 import Nav from "./components/Nav";
 import Todo from "./components/Todo"
 import Home from "./components/Home"
 import NewToday from "./components/NewToday"
+// import TodoList from "./components/TodoList"
 import MainFooter from "./components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './main.css';
 
-function importAll(r) {
-  return r.keys().map(r);
-}
-const images = importAll(require.context('./img', false, /\.(png|jpe?g|svg)$/));
-
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-      todos: {},
-      todoText: ""
-    }; //initialize as empty
-    this.sendTodo = this.sendTodo.bind(this)
-    this.input = this.input.bind(this)
+    this.state = {loading: true};
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged((user)=> {
+    this.authUnregFunc = firebase.auth().onAuthStateChanged((user)=> {
       if (user) {
         this.setState({
-          user: user
+          user: user,
+          loading: false
         });
       } else {
-        this.setState({ user: null })
+        this.setState({ 
+          user: null, 
+          loading: false
+        })
       }
-    });
-
-    this.todosRef = firebase.database().ref("todos")
-    this.todosRef.on("value", (snapshot) => {
-      let todos = snapshot.val();
-      this.setState({todos: todos})
     })
   }
 
-  // push tofo to the database
-  sendTodo = () => {
-    let todo = {
-      user: firebase.auth().currentUsers.displayName,
-      timestamp : firebase.database.ServerValue.TIMESTAMP,
-      text: this.state.todoText
+  componentWillUnmount() {
+    this.authUnRegFunc();
+  }
+
+    //A callback function for registering new users
+    handleSignUp = (email, password, handle, avatar) => {
+      this.setState({errorMessage:null}); //clear any old errors
+  
+      /* TODO: sign up user here */
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+        let profilePromise = firebase.auth().currentUser.updateProfile({
+          displayName: handle,
+          photoURL: avatar
+        });
+        return profilePromise;
+      })
+      .then(() => {
+        this.setState({
+          user: firebase.auth.currentUser,
+          displayName: handle,
+          photoURL: avatar
+        })
+      })
+      .catch((err) => {
+        this.setState({errorMessage: err.message });
+      })
+  
+    }
+  
+    //A callback function for logging in existing users
+    handleSignIn = (email, password) => {
+      this.setState({errorMessage:null}); //clear any old errors
+  
+      /* TODO: sign in user here */
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .catch((err) => {
+        this.setState({errorMessage: err.message });
+        })
+    }
+  
+    //A callback function for logging out the current user
+    handleSignOut = () => {
+      this.setState({errorMessage:null}); //clear any old errors
+  
+      /* TODO: sign out user here */
+      firebase.auth().signOut()
+      .catch((err) => {
+        this.setState({errorMessage: err.message });
+      })
     }
 
-    this.todosRef
-      .push(todo)
-      .then(() => { this.setState({todoText: ""}) }) 
-      .catch((d) => console.log("error ", d))
-  }
-
-  input = (inputText) => {
-    this.setState({todoText: inputText})
-  }
-
-  updateTodo() {
-    // let text = 
-  }
-
   render() {
+    let content = null; //content to render
+
+    if(!this.state.user) { //if logged out, show signup form
+      content = (
+        <div className="container">
+          <Home />
+          <h1>Sign Up</h1>
+          <SignUpForm 
+            signUpCallback={this.handleSignUp} 
+            signInCallback={this.handleSignIn} 
+          />
+        </div>
+      );
+    } else {
+      content = (
+          <Main currentUser={this.state.user}/>
+      )
+    }
+    if (this.state.loading) {
+      content = (
+        <div className="text-center">
+          <i className="fa fa-spinner fa-spin fa-3x" aria-label="Connecting..."></i>
+        </div>
+      )
+    }
     return (
       <div>
-        {/* if user, board go to home board, else go to login - signup */}
         <Nav />
-        <Home />
-        {/* <Switch >
-          <Route path="/about" component={Auth} />
-          <Route exact path="/" component={Main} />
-          <Route path="/complete" component={Main} />
-          <Route path="/goals" component={Main} /> */}
-          {/* <Route path="/todo" component={ () => <Main todos={this.props.todos} sendTodo={this.state.sendTodo} callback={this.state.input} /> } /> */}
-          {/* <Route path="/todo" component={() => <Main currentUser={this.state.user}/>} />
-        </Switch> */}
+        {this.state.errorMessage &&
+          <p className="alert alert-danger">{this.state.errorMessage}</p>
+        }
+        {content}
+        {this.state.user &&
+          <button className="btn btn-warning" onClick={this.handleSignOut}>
+            Log Out {this.state.user.displayName}
+          </button>
+        }
         <MainFooter />
       </div>
     );
@@ -95,7 +138,6 @@ class Main extends Component {
       <div>
         <Hero />
         <Content currentUser={this.props.user} />
-        {/* <Content todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback} /> */}
       </div>
     )
   }
@@ -115,12 +157,13 @@ class Content extends Component {
           </ul>
         </div>
         <div className="tile is-ancestor">
-          <Switch>
+          <NewToday currentUser={this.props.user} />
+          {/* <TodoList currentUser={this.props.user}/> */}
+          {/* <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
-            {/* <Route path="/" component={ () => <Todos todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/> } /> */}
             <Route path="/" component={ () => <NewToday currentUser={this.props.user} /> } />
-          </Switch>
+          </Switch> */}
           <Profile />
         </div>
       </div>
@@ -187,28 +230,6 @@ class TodoSec extends Component {
     )
   }
 }
-
-// class TodoLine extends Component {
-//   render() {
-//     return(
-//       <div className="draggable">
-//         <div className="todo-item todo" draggable="false">
-//           <div className="icon">
-//             <button className="circle" />
-//           </div>
-//           <input 
-//             className="ipt-todo ipt-all input" 
-//             type="text" 
-//             placeholder="Do one task at a time..."
-//             onChange={(event) => this.setState({todoText: event.target.value})}
-//             onKeyDown={this.onKeyDown} 
-//           />
-//         </div>
-//         <div className="is-divider" />
-//       </div>
-//     )
-//   }
-// }
 
 class Todos extends Component {
   render () {
