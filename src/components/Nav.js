@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import NavLine from "./NavLine";
 
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -16,7 +19,7 @@ class Nav extends Component {
               <span aria-hidden="true" />
             </a>
           </div>
-          <NavLine />
+          <NavLine handleSignOut={this.props.handleSignOut}/>
         </div>
       </nav>
     )

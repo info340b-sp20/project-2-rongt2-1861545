@@ -4,8 +4,22 @@
 }
 
 .complete-content {
-    height: 500px;
+    height: 100px;
 }
+
+.scroll-containerr {
+    width: 40%;
+}
+
+.scroll-boxx {
+    height: 500px;
+    overflow: scroll;
+}
+
+/* make footer stay at the bottom */
+.hello {
+    height: 80vh;
+} 
 
 #logo-img {
     max-height: 2.15rem;

@@ -14,6 +14,9 @@ class NavLine extends Component {
             <div className="navbar-dropdown">
               <a className="navbar-item" href="/about">About</a>
               <a className="navbar-item">Contact</a>
+              <a className="navbar-item" onClick={this.props.handleSignOut}>
+                Log out 
+              </a>
               <hr className="navbar-divider" />
               <a className="navbar-item">Report an issue</a>
             </div>

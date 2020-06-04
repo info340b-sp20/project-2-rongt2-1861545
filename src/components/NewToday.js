@@ -41,50 +41,34 @@ export default class NewToday extends Component {
     let user = this.props.currentUser; //the current user (convenience)
 
     return (
-      <div className="container">
-        <div className="row py-3 chirp-box">
-          <div className="col-1">
-          </div>
-          <div className="col pl-4 pl-lg-1">
-            <form>
-              <textarea name="text" className="form-control mb-2" placeholder="What's Happening...?" 
-                value={this.state.post} 
-                onChange={this.updatePost}
-                onBlur = {this.postTodo} 
-                />
-              {/* Only show this if the post length is > 140 */}
-              {/* {this.state.post.length > 140 &&
-                <small className="form-text">140 character limit!</small>
-              } */}
-            </form>
-          </div>
-        </div>
-      </div>
-
       // <div className="tile is-parent is-vertical">
       //   <article className="tile is-child notification">
       //     <p className="title">Today</p>
       //     <div className="today-content content">
-      //       <div className="draggable">
-      //         <div className="todo-item today" draggable="false">
-      //           <div className="icon">
-      //             <button className="circle" />
-      //           </div>
-      //           <input 
-      //             className="ipt-today ipt-all input" 
-      //             type="text" 
-      //             placeholder="Write a smallest task..." 
-      //             value={this.state.post}
-      //             onChange={this.updatePost}
-      //             onBlur = {this.postTodo} 
-      //           />
-      //         </div>
-      //         <div className="is-divider" />
-      //       </div>
-      //       {/* <div>
-      //         <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
-      //       </div> */}
-      //     </div>
+            <div className="draggable">
+              <div className="todo-item today" draggable="false">
+                <div className="icon">
+                  <button className="circle" />
+                </div>
+                <input 
+                  className="ipt-today ipt-all input" 
+                  type="text" 
+                  placeholder="Write a smallest task..." 
+                  value={this.state.post}
+                  onChange={this.updatePost}
+                  onBlur = {this.postTodo} 
+                />
+              </div>
+              <div className="is-divider" />
+            {/* </div> */}
+            {/* <div>
+              <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
+            </div> */}
+                           {/* Only show this if the post length is > 140 */}
+               {/* {this.state.post.length > 140 &&
+                 <small className="form-text">140 character limit!</small>
+               } */}
+           </div>
       //   </article>
       // </div>
     );
