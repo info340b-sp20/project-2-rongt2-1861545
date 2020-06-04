@@ -8,7 +8,7 @@ import Nav from "./components/Nav";
 import Todo from "./components/Todo"
 import Home from "./components/Home"
 import NewToday from "./components/NewToday"
-// import TodoList from "./components/TodoList"
+import TodoList from "./components/TodoList"
 import MainFooter from "./components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
@@ -158,7 +158,7 @@ class Content extends Component {
         </div>
         <div className="tile is-ancestor">
           <NewToday currentUser={this.props.user} />
-          {/* <TodoList currentUser={this.props.user}/> */}
+          <TodoList currentUser={this.props.user}/>
           {/* <Switch>
             <Route path="/complete" component={Complete} />
             <Route path="/goals" component={Goals} />
