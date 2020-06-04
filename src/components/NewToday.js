@@ -44,7 +44,6 @@ export default class NewToday extends Component {
       <div className="container">
         <div className="row py-3 chirp-box">
           <div className="col-1">
-            {/* <img className="avatar" src={user.photoURL} alt={user.displayName+' avatar'} /> */}
           </div>
           <div className="col pl-4 pl-lg-1">
             <form>
@@ -53,25 +52,41 @@ export default class NewToday extends Component {
                 onChange={this.updatePost}
                 onBlur = {this.postTodo} 
                 />
-
               {/* Only show this if the post length is > 140 */}
               {/* {this.state.post.length > 140 &&
                 <small className="form-text">140 character limit!</small>
               } */}
-              
-              {/* <div className="text-right"> */}
-                {/* Disable if invalid post length */}
-                {/* <button className="btn btn-primary" 
-                  disabled={this.state.post.length === 0 || this.state.post.length > 140}
-                  onClick={this.postTodo} 
-                  >
-                  <i className="fa fa-pencil-square-o" aria-hidden="true"></i> Share
-                </button> 					
-              </div> */}
             </form>
           </div>
         </div>
       </div>
+
+      // <div className="tile is-parent is-vertical">
+      //   <article className="tile is-child notification">
+      //     <p className="title">Today</p>
+      //     <div className="today-content content">
+      //       <div className="draggable">
+      //         <div className="todo-item today" draggable="false">
+      //           <div className="icon">
+      //             <button className="circle" />
+      //           </div>
+      //           <input 
+      //             className="ipt-today ipt-all input" 
+      //             type="text" 
+      //             placeholder="Write a smallest task..." 
+      //             value={this.state.post}
+      //             onChange={this.updatePost}
+      //             onBlur = {this.postTodo} 
+      //           />
+      //         </div>
+      //         <div className="is-divider" />
+      //       </div>
+      //       {/* <div>
+      //         <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
+      //       </div> */}
+      //     </div>
+      //   </article>
+      // </div>
     );
   }
 }

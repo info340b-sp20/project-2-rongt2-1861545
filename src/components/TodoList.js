@@ -15,7 +15,6 @@ componentDidMount() {
   todosRef.on('value', (snapshot) => {
     let data = snapshot.val();
 
-    // if (this.props.todos) {
       let todoKeys = Object.keys(data);
       let todoArray = todoKeys.map((key) => {
         let todoObj = data[key];
@@ -23,11 +22,6 @@ componentDidMount() {
         return todoObj;
       })
       this.setState({ todos: todoArray });
-    // } else {
-    //   return
-    // }
-  
-
   })
 }
 
@@ -71,35 +65,16 @@ class TodoItem extends Component {
   render() {
     let todo = this.props.todo; //current todo (convenience)
 
-    //counting likes
-    let likeCount = 0; //count likes
-    let userLikes = false; //current user has liked
-    if(todo.likes){
-      likeCount = Object.keys(todo.likes).length;
-      if(todo.likes[this.props.currentUser.uid]) //if user id is listed
-        userLikes = true; //user liked!
-    }
-
-    return (
-      <div className="row py-4 bg-white border">
-        {/* <div className="col-1">
-          <img className="avatar" src={todo.userPhoto} alt={todo.userName+' avatar'} />
-        </div> */}
-        <div className="col pl-4 pl-lg-1">
-
-          <span className="handle">{todo.userName} {/*space*/}</span>
-
-          {/* <span className="time"><Moment date={todo.time} fromNow/></span> */}
-
-          <div className="todo">{todo.text}</div>
-
-          {/* A section for showing todo likes */}
-          {/* <div className="likes">          
-            <i className={'fa fa-heart '+(userLikes ? 'user-liked': '')} aria-label="like" onClick={this.liketodo} ></i>
-            <span> {likeCount}</span>
-          </div> */}
+    return ( 
+      <div className="draggable">
+        <div className="todo-item todo" draggable="false">
+          <div className="icon">
+            <button className="circle" onClick/>
+          </div>
+          <input className="ipt-todo ipt-all input" type="text" value={todo.text}/>
         </div>
-      </div>      
+         <div className="is-divider" />
+      </div>
     );
   }
 }
