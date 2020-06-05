@@ -15,11 +15,10 @@ import './main.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.state = {loading: true};
     this.state = {
       user: null, 
       loading: true
-      };
+    };
   }
 
   componentDidMount() {
@@ -46,7 +45,7 @@ class App extends Component {
   handleSignUp = (email, password, handle, avatar) => {
     this.setState({errorMessage:null}); //clear any old errors
 
-    /*  sign up user here */
+    /* sign up user here */
     firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
               let profilePromise = firebase.auth().currentUser.updateProfile({
@@ -94,18 +93,17 @@ class App extends Component {
     if(!this.state.user) { //if logged out, show signup form
       content = (
         <div className="container">
-                      <h1>Sign Up</h1>
+            <h1>Sign Up/ Sign in</h1>
             <SignUpForm 
               signUpCallback={this.handleSignUp} 
               signInCallback={this.handleSignIn} 
             />
             <Home />
-
         </div>
       );
     } else { // else show the main todo board
       content = (
-          <Main currentUser={this.state.user}/>
+          <Main currentUser={this.state.user} />
       )
     }
     if (this.state.loading) { // if loading, show spinner
@@ -152,16 +150,14 @@ class Content extends Component {
               <li className={pathname=="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
             </ul>
           </div>
-          <div className="tile is-ancestor"> 
-          {/* outside container */}
+          <div className="tile is-ancestor">
             <Switch>
-            <Route path="/complete" component={Complete} />
-            <Route path="/goals" component={Goals} />
+            <Route path="/complete" component={() => <Complete currentUser={this.props.user} /> } />
+            <Route path="/goals" component={() => <Goals currentUser={this.props.user} /> } />
             <Route path="/" component={ () => <Todos currentUser={this.props.user} /> } />
             </Switch>
             <Profile />
           </div>
-          {/* <Profile /> */}
         </div>
       </section>
     )
@@ -202,7 +198,7 @@ class Complete extends Component {
         <article className="tile is-child notification">
           <p className="title">Complete</p>
           <div className="today-content content scroll-boxx">
-            <TodoList currentUser={this.props.user} />
+            <TodoList currentUser={this.props.user} containerType={"complete"}/>
           </div>
         </article>
       </div>

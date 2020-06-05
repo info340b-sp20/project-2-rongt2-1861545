@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; //import React Component
-import Moment from 'react-moment';
+// import Moment from 'react-moment';
 import firebase from 'firebase/app';
 
 //A list of todos that have been posted
@@ -34,9 +34,10 @@ export default class TodoList extends Component {
     if(!this.state.todos) return null; //if no todos, don't display
     
     let todoItems = this.state.todos.map((todo) => {
+      console.log(todo.type)
       if (todo.type === this.props.containerType) {
         return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
-      }
+      } 
     })  
 
     return (
@@ -59,24 +60,24 @@ class TodoItem extends Component {
   }
 
   toggleComplete = () => {
-    let ref = firebase.database().ref('todos/' + this.props.todo.id).child("complete")
+    let ref = firebase.database().ref('todos/' + this.props.todo.id).child("type")
 
     ref.once('value').then((snapshot) => {
-      if(snapshot.val() === true) {
-        ref.set(false);
+      if(snapshot.val() === "complete") {
+        ref.set("todo");
       } else {
-        ref.set(true);
+        ref.set("complete");
       }
     });
-    if(this.props.todo.complete === false) {
+    if(this.props.todo.type !== "complete") {
       this.setState({
         btnColor: "white",
-        strike: "line-through"
+        strike: ""
       })
     } else {
       this.setState({
         btnColor: "blue",
-        strike: ""
+        strike: "line-through"
       })
     }
   }
