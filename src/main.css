@@ -152,7 +152,7 @@ input:focus::-moz-placeholder {
     height: 18px;
     margin-left: 5px;
     border-radius: 50%;
-    /* background-color: #3370ff; */
+    background-color: #FFF;
     border: 1.618px solid #3370ff;
 }
 

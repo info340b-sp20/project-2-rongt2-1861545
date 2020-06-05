@@ -31,73 +31,71 @@ componentDidMount() {
 
   render() {
     if(!this.state.todos) return null; //if no todos, don't display
-
+    
     let todoItems = this.state.todos.map((todo) => {
-      return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
+      let ref = firebase.database().ref('todos/' + todo.id).child("type")
+      let data;
+      let item = async () => {
+        let snapshot = await ref.once("value");
+        data = snapshot.val();
+        // console.log(data === this.props.containerType)
+        if  (data === this.props.containerType) {
+          // console.log(<TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />)
+          return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
+        }
+      }
+      return item;
     })  
 
     return (
       <div className="container">
           {todoItems}
-      </div>);
-  }
+      </div>
+    );
+  } 
 }
 
 //A single todo
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      color: '#FFF'
-    }
-    this.clicked = this.clicked.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
   }
 
-  toggleComplete = () => {
+  toggleComplete = (event) => {
     let ref = firebase.database().ref('todos/' + this.props.todo.id).child("complete")
-    ref.once('value').then(function(snapshot) {
-      if(snapshot.val() === true){
-        ref.set(false)
+    ref.once('value').then((snapshot) => {
+      if(snapshot.val() === true) {
+        ref.set(false);
       } else {
-        ref.set(true)
+        ref.set(true);
       }
     });
-  }
-
-  clicked(event) {
-      let currentColor = event.target.attributes['btn-color'].value;
-      let newColor = currentColor === "#FFF" ? "#3370ff" : "#FFF";
-      event.target.style.backgroundColor = newColor;
-      event.target.setAttribute('data-color' , newColor);
-      let letter = event.target.innerText;
-      this.setState({ currentWord: this.state.currentWord + letter })
+    if (window.getComputedStyle(event.target, null).getPropertyValue("background-color") === "rgb(255, 255, 255)") {
+      event.target.style.backgroundColor = "#3370ff";
+    } else {
+      event.target.style.backgroundColor = "#FFF";
+    }
   }
  
-  render() {
-    let todo = this.props.todo; //current todo (convenience)
+  // toggleStrike = (event) => {
+  //   if (window.getComputedStyle(event.target, null).getPropertyValue("text-decoration-line") !== "line-through") {
+  //     event.target.style.textDecorationLine = "line-through";
+  //   } else {
+  //     // event.target.style.backgroundColor = "#FFF";
+  //   }
+  // }
 
-    let likeCount = 0; //count likes
-    let userLikes = false; //current user has liked
-    // if(todo.complete) {
-      // likeCount = Object.keys(chirp.likes).length;
-      // if(chirp.likes[this.props.currentUser.uid]) //if user id is listed
-      //   userLikes = true; //user liked!
-      
-    // }
+  render() {
+    let todo = this.props.todo;
     
     return ( 
       <div className="draggable">
         <div className="todo-item todo" draggable="false">
           <div className="icon">
-            <button className="circle" 
-                    btn-color='#FFF' 
-                    onClick={
-                      
-                        // (e) => {this.clicked(e)};
-                            this.toggleComplete}
-                    // onClick={
-                    //         toggleComplete}
-           />
+            <button className="circle"
+                    onClick={(e) => { this.toggleComplete(e) }}
+            />
           </div>
           <input className="ipt-todo ipt-all input" type="text" value={todo.text} />
         </div>

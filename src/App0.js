@@ -176,8 +176,8 @@ class Todos extends Component {
           <article className="tile is-child notification">
             <p className="title">Today</p>
             <div className="today-content content scroll-boxx">
-              <NewToday currentUser={this.props.user} />
-              <TodoList currentUser={this.props.user} />
+              <NewToday currentUser={this.props.user} currentType={"today"}/>
+              <TodoList currentUser={this.props.user} containerType={"today"}/>
             </div>
           </article>
         </div>
@@ -185,8 +185,8 @@ class Todos extends Component {
           <article className="tile is-child notification draggable-area">
             <p className="title">Todos</p>
             <div className="today-content content scroll-boxx">
-              <NewToday currentUser={this.props.user} />
-              <TodoList currentUser={this.props.user} />
+              <NewToday currentUser={this.props.user} currentType={"todo"}/>
+              <TodoList currentUser={this.props.user} containerType={"todo"}/>
             </div>
           </article>
         </div>
@@ -217,8 +217,8 @@ class Goals extends Component {
         <article className="tile is-child notification">
           <p className="title">Goals</p>
           <div className="today-content content scroll-boxx">
-            <NewToday currentUser={this.props.user} />
-            <TodoList currentUser={this.props.user} />
+            <NewToday currentUser={this.props.user} currentType={"goal"}/>
+            <TodoList currentUser={this.props.user} containerType={"goal"}/>
           </div>
         </article>
       </div>

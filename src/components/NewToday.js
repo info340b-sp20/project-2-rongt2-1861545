@@ -10,6 +10,7 @@ export default class NewToday extends Component {
       todo:'',
       complete: false
     };
+    // console.log(this.props.currentType)
     this.userId = firebase.auth().currentUser.uid;
     this.userName = firebase.auth().currentUser.displayName;
     this.userPhoto = firebase.auth().currentUser.photoURL;
@@ -27,7 +28,7 @@ export default class NewToday extends Component {
   //post a new chirp to the database
   postTodo = (event) => {
     event.preventDefault(); //don't submit
-    console.log(this.props.currentUser);
+    // console.log(this.props.currentUser);
     /* TODO: add a new Chirp to the database */
     let newTodo = {
       text: this.state.todo,
@@ -35,10 +36,10 @@ export default class NewToday extends Component {
       userName: this.userName,
       userPhoto: this.userPhoto,
       time: this.time,
-      complete: this.state.complete
+      complete: this.state.complete,
+      type: this.props.currentType
     }
     firebase.database().ref('todos').push(newTodo);
-
     this.setState({todo:''}); //empty out post for next time
   }
 
