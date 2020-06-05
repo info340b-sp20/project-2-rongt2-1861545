@@ -15,7 +15,11 @@ import './main.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {loading: true};
+    // this.state = {loading: true};
+    this.state = {
+      user: null, 
+      loading: true
+      };
   }
 
   componentDidMount() {
@@ -90,12 +94,13 @@ class App extends Component {
     if(!this.state.user) { //if logged out, show signup form
       content = (
         <div className="container">
-            <Home />
-            <h1>Sign Up</h1>
+                      <h1>Sign Up</h1>
             <SignUpForm 
               signUpCallback={this.handleSignUp} 
               signInCallback={this.handleSignIn} 
             />
+            <Home />
+
         </div>
       );
     } else { // else show the main todo board
@@ -117,11 +122,6 @@ class App extends Component {
           <p className="alert alert-danger">{this.state.errorMessage}</p>
         }
         {content} 
-        {this.state.user && // if logged in a user, show logout button
-          <button className="btn btn-warning" onClick={this.handleSignOut}>
-            Log Out {this.state.user.displayName}
-          </button>
-        }
         <MainFooter />
       </div>
     );
@@ -171,26 +171,26 @@ class Content extends Component {
 class Todos extends Component {
   render() {
     return(
-          <div>
-            <div className="tile is-parent is-vertical .scroll-containerr">
-              <article className="tile is-child notification">
-                <p className="title">Today</p>
-                <div className="today-content content scroll-boxx">
-                  <NewToday currentUser={this.props.user} />
-                  <TodoList currentUser={this.props.user} />
-                </div>
-              </article>
+      <div class="tile is-9 content-tab" id="today">
+        <div className="tile is-parent is-vertical .scroll-containerr">
+          <article className="tile is-child notification">
+            <p className="title">Today</p>
+            <div className="today-content content scroll-boxx">
+              <NewToday currentUser={this.props.user} />
+              <TodoList currentUser={this.props.user} />
             </div>
-            <div className="tile is-parent .scroll-containerr">
-              <article className="tile is-child notification draggable-area">
-                <p className="title">Todos</p>
-                <div className="today-content content scroll-boxx">
-                  <NewToday currentUser={this.props.user} />
-                  <TodoList currentUser={this.props.user} />
-                </div>
-              </article>
+          </article>
+        </div>
+        <div className="tile is-parent .scroll-containerr">
+          <article className="tile is-child notification draggable-area">
+            <p className="title">Todos</p>
+            <div className="today-content content scroll-boxx">
+              <NewToday currentUser={this.props.user} />
+              <TodoList currentUser={this.props.user} />
             </div>
-          </div>
+          </article>
+        </div>
+      </div>
     )
   }
 }

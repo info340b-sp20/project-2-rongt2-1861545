@@ -6,17 +6,22 @@ import firebase from 'firebase/app';
 export default class NewToday extends Component {
   constructor(props){
     super(props);
-    this.state = {todo:''};
-    this.userId = firebase.auth().currentUser.uid
-    this.userName = firebase.auth().currentUser.displayName
-    this.userPhoto = firebase.auth().currentUser.photoURL
-    this.time = firebase.database.ServerValue.TIMESTAMP
-
+    this.state = {
+      todo:'',
+      complete: false
+    };
+    this.userId = firebase.auth().currentUser.uid;
+    this.userName = firebase.auth().currentUser.displayName;
+    this.userPhoto = firebase.auth().currentUser.photoURL;
+    this.time = firebase.database.ServerValue.TIMESTAMP;
   }
 
   //when the text in the form changes
   updatePost = (event) => {
-    this.setState({todo: event.target.value});
+    this.setState({
+      todo: event.target.value,
+      complete: false
+    });
   }
 
   //post a new chirp to the database
@@ -29,7 +34,8 @@ export default class NewToday extends Component {
       userId: this.userId,
       userName: this.userName,
       userPhoto: this.userPhoto,
-      time: this.time
+      time: this.time,
+      complete: this.state.complete
     }
     firebase.database().ref('todos').push(newTodo);
 

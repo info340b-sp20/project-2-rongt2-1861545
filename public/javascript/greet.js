@@ -7,7 +7,6 @@ let typewriter = new Typewriter(app, {
     deleteSpeed: 20
 });
 
-
 typewriter.typeString('What\'s your main focus for today?')
     .pauseFor(2500)
     .deleteAll()
@@ -33,8 +32,6 @@ typewriter.typeString('What\'s your main focus for today?')
     .pauseFor(2500)
     .start();
 
-
-
 // Greet according to time in the day
 let today = new Date()
 let hour = today.getHours()
@@ -49,7 +46,6 @@ if (hour >= 18 && hour < 3) {
 let firstname = document.getElementById('profile_name').textContent.split(" ")[0];
 
 document.querySelector('.hero h1.title').textContent = str + firstname + '.';
-
 
 // Tab Switcher
 function openTab(evt, tabName) {
