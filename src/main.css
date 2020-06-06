@@ -36,7 +36,7 @@
 }
 
 #front-page-title {
-    font-size: 4.5rem;
+    font-size: 4rem;
 }
 
 .front-page-link {
@@ -154,6 +154,20 @@ input:focus::-moz-placeholder {
     border-radius: 50%;
     background-color: #FFF;
     border: 1.618px solid #3370ff;
+}
+
+.left {
+    width: 70%;
+    margin-top: 80px;
+}
+
+.right {
+    width: 30%;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 80px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #home nav,

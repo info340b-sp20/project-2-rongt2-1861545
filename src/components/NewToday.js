@@ -62,11 +62,7 @@ export default class NewToday extends Component {
                 />
               </div>
               <div className="is-divider" />
-            {/* </div> */}
-            {/* <div>
-              <TodoLine todos={this.props.todos} sendTodo={this.props.sendTodo} callback={this.props.callback}/>
-            </div> */}
-                           {/* Only show this if the post length is > 140 */}
+              {/* Only show this if the post length is > 140 */}
                {/* {this.state.post.length > 140 &&
                  <small className="form-text">140 character limit!</small>
                } */}

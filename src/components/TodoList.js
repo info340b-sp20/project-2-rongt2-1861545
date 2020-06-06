@@ -33,12 +33,14 @@ export default class TodoList extends Component {
   render() {
     if(!this.state.todos) return null; //if no todos, don't display
     
-    let todoItems = this.state.todos.map((todo) => {
-      console.log(todo.type)
-      if (todo.type === this.props.containerType) {
-        return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
-      } 
-    })  
+    // let todoItems = this.state.todos.map((todo) => {
+    //   if (todo.type === this.props.containerType) {
+    //     return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
+    //   }
+    // })  
+    let todoItems = this.state.todos
+      .filter(todo => todo.type === this.props.containerType)
+      .map((todo) => <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />)
 
     return (
       <div className="container">
@@ -69,9 +71,23 @@ class TodoItem extends Component {
         ref.set("complete");
       }
     });
+    // if(this.props.todo.type !== "complete") {
+    //   this.setState({
+    //     btnColor: "white",
+    //     strike: ""
+    //   })
+    // } else {
+    //   this.setState({
+    //     btnColor: "blue",
+    //     strike: "line-through"
+    //   })
+    // }
+  }
+
+  setStyle = () => {
     if(this.props.todo.type !== "complete") {
       this.setState({
-        btnColor: "white",
+        btnColor: "red",
         strike: ""
       })
     } else {
@@ -80,20 +96,27 @@ class TodoItem extends Component {
         strike: "line-through"
       })
     }
+    console.log(this.state.btnColor)
+    return this.state.btnColor;
   }
 
   render() {
     let todo = this.props.todo;
+    // console.log(this.setStyle)
     return ( 
+      // <NewToday />
       <div className="draggable">
         <div className="todo-item todo" draggable="false">
           <div className="icon">
             <button className="circle"
                     onClick={this.toggleComplete} 
-                    style={{backgroundColor: this.state.btnColor}}
+                    style={{backgroundColor: this.setStyle}}
             />
           </div>
-          <input className="ipt-todo ipt-all input" type="text" value={todo.text} style={{textDecorationLine: this.state.strike}}/>
+          <input className="ipt-todo ipt-all input" 
+                 type="text" value={todo.text} 
+                 style={{textDecorationLine: this.state.strike}}
+                 />
         </div>
          <div className="is-divider" />
       </div>

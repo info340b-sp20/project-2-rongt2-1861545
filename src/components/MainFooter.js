@@ -6,7 +6,7 @@ class MainFooter extends Component {
       <footer className="footer">
         <div className="content has-text-centered">
         <p>
-          <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="#">Group 9</a>
+          <strong>GoalLab</strong> made with ❤️ in Seattle. by <a href="/">Group 9</a>
         </p>
         </div>
       </footer>

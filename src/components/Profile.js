@@ -8,7 +8,7 @@ class Profile extends Component {
           <div className="card is-mobile">
             <div className="card-image">
               <figure className="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder" />
               </figure>
             </div>
             <div className="card-content">
@@ -50,8 +50,8 @@ class Profile extends Component {
                 </div>
               </nav>
               <div className="content">
-                <p>TA for info340: client-side programming <a>jamesk97@uw.edu</a>.</p>
-                <a href="#">#css</a> <a href="#">#responsive</a>
+                <p>TA for info340: client-side programming <a href="/">jamesk97@uw.edu</a>.</p>
+                <a href="/">#css</a> <a href="/">#responsive</a>
                 <br />
                 {/* <time dateTime="2016-1-1">Last seen: few minutes ago</time> */}
               </div>

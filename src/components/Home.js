@@ -8,7 +8,10 @@ class Home extends Component {
     return (
       <div>
         <HomeNav />
-        <HomeContent />
+        <HomeContent 
+          signUpCallback={this.props.signUpCallback} 
+          signInCallback={this.props.signInCallback}
+        />
       </div>
     );
   }
