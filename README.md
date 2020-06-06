@@ -13,3 +13,8 @@ By clicking on the circle button in front of the todo/goal item, the todo/goal w
 By clicking on the circle button in front of the completed item, and the completed item can be moved back to the todo list. 
 
 The profile card on the site will show user information and the number of todo items the user has been completed.
+
+## Screenshots
+<img src="./appscreenshot/screenshot1.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot2.png" alt="Screenshot of the app" height="300" />
+<img src="./appscreenshot/screenshot3.png" alt="Screenshot of the app" height="300" />
