@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import firebaseConfig from "./Config"
 
 import 'bootstrap/dist/css/bootstrap.css';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 // import 'font-awesome/css/font-awesome.css';
 
 firebase.initializeApp(firebaseConfig)

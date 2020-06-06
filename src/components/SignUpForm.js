@@ -1,5 +1,4 @@
-import React, { Component } from 'react'; //import React Component
-// import './SignUpForm.css'; //load module CSS
+import React, { Component } from 'react';
 
 class SignUpForm extends Component {
   constructor(props){
@@ -9,18 +8,18 @@ class SignUpForm extends Component {
       'email': undefined,
       'password': undefined,
       'handle': undefined,
-      'avatar': '' //default to blank value
+      'avatar': ''
     }; 
   }
 
   //update state for specific field
   handleChange = (event) => {
-    let field = event.target.name; //which input
-    let value = event.target.value; //what value
+    let field = event.target.name;
+    let value = event.target.value;
 
-    let changes = {}; //object to hold changes
-    changes[field] = value; //change this field
-    this.setState(changes); //update state
+    let changes = {};
+    changes[field] = value;
+    this.setState(changes);
   }
 
   //handle signUp button

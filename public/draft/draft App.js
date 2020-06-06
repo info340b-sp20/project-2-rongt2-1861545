@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter, Link, Switch, Redirect, NavLink, Router} from 'react-router-dom';
 import Auth from "./components/Auth";
-import Hero from "./components/Hero";
-import Profile from "./components/Profile";
-import Nav from "./components/Nav";
+import Hero from "../../src/components/Hero";
+import Profile from "../../src/components/Profile";
+import Nav from "../../src/components/Nav";
 import Todo from "./components/Todo"
-import Home from "./components/Home"
-import NewToday from "./components/NewToday"
-import MainFooter from "./components/MainFooter"
+import Home from "../../src/components/Home"
+import NewToday from "../../src/components/NewToday"
+import MainFooter from "../../src/components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './main.css';

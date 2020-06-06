@@ -1,5 +1,4 @@
 import React, { Component } from 'react'; //import React Component
-// import Moment from 'react-moment';
 import firebase from 'firebase/app';
 
 //A list of todos that have been posted
@@ -31,13 +30,7 @@ export default class TodoList extends Component {
   }
 
   render() {
-    if(!this.state.todos) return null; //if no todos, don't display
-    
-    // let todoItems = this.state.todos.map((todo) => {
-    //   if (todo.type === this.props.containerType) {
-    //     return <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />
-    //   }
-    // })  
+    if(!this.state.todos) return null; //if no todos, don't display  
     let todoItems = this.state.todos
       .filter(todo => todo.type === this.props.containerType)
       .map((todo) => <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />)
@@ -58,7 +51,7 @@ class TodoItem extends Component {
       btnColor: "white",
       strike: ""
     };
-    // this.toggleComplete = this.toggleComplete.bind(this);
+    this.toggleComplete = this.toggleComplete.bind(this);
   }
 
   toggleComplete = () => {
@@ -71,17 +64,6 @@ class TodoItem extends Component {
         ref.set("complete");
       }
     });
-    // if(this.props.todo.type !== "complete") {
-    //   this.setState({
-    //     btnColor: "white",
-    //     strike: ""
-    //   })
-    // } else {
-    //   this.setState({
-    //     btnColor: "blue",
-    //     strike: "line-through"
-    //   })
-    // }
   }
 
   setStyle = () => {
@@ -102,7 +84,6 @@ class TodoItem extends Component {
 
   render() {
     let todo = this.props.todo;
-    // console.log(this.setStyle)
     return ( 
       // <NewToday />
       <div className="draggable">

@@ -4,12 +4,13 @@ import Hero from "./components/Hero";
 import Profile from "./components/Profile";
 import Nav from "./components/Nav";
 import Home from "./components/Home"
-import NewToday from "./components/NewToday"
+import TodoInput from "./components/TodoInput"
 import TodoList from "./components/TodoList"
 import MainFooter from "./components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './main.css';
+import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 class App extends Component {
   constructor(props) {
@@ -100,11 +101,6 @@ class App extends Component {
     if(!this.state.user) { //if logged out, show signup form
       content = (
         <div className="container">
-            {/* <h1>Sign Up/ Sign in</h1> */}
-            {/* <SignUpForm 
-              signUpCallback={this.handleSignUp} 
-              signInCallback={this.handleSignIn} 
-            /> */}
             <Home 
               signUpCallback={this.handleSignUp} 
               signInCallback={this.handleSignIn}
@@ -119,23 +115,17 @@ class App extends Component {
     if (this.state.loading) { 
       content = null
     }
-    // if (this.state.loading) { // if loading, show spinner
-    //   content = (
-    //     <div className="text-center hello">
-    //       <i className="fa fa-spinner fa-spin fa-3x" aria-label="Connecting..."></i>
-    //     </div>
-    //   )
-    // }
+
     return (
       <div>
         <Nav handleSignOut={this.handleSignOut}/>
+        {!!this.state.errorMessage && // show error message 
+          <p className="alert alert-danger">{this.state.errorMessage}</p>
+        }
         {this.state.loading ? 
           <div className="text-center hello">
             <i className="fa fa-spinner fa-spin fa-3x" aria-label="Connecting..."></i>
           </div> : null }
-        {/* {!!this.state.errorMessage && // show error message 
-          <p className="alert alert-danger">{this.state.errorMessage}</p>
-        } */}
         {content} 
         <MainFooter />
       </div>
@@ -189,7 +179,7 @@ class Todos extends Component {
           <article className="tile is-child notification">
             <p className="title">Today</p>
             <div className="today-content content scroll-boxx">
-              <NewToday currentUser={this.props.user} currentType={"today"}/>
+              <TodoInput currentUser={this.props.user} currentType={"today"}/>
               <TodoList currentUser={this.props.user} containerType={"today"}/>
             </div>
           </article>
@@ -198,7 +188,7 @@ class Todos extends Component {
           <article className="tile is-child notification draggable-area">
             <p className="title">Todos</p>
             <div className="today-content content scroll-boxx">
-              <NewToday currentUser={this.props.user} currentType={"todo"}/>
+              <TodoInput currentUser={this.props.user} currentType={"todo"}/>
               <TodoList currentUser={this.props.user} containerType={"todo"}/>
             </div>
           </article>
@@ -233,7 +223,7 @@ class Goals extends Component {
           <article className="tile is-child notification">
             <p className="title">Goals</p>
             <div className="today-content content scroll-boxx">
-              <NewToday currentUser={this.props.user} currentType={"goal"}/>
+              <TodoInput currentUser={this.props.user} currentType={"goal"}/>
               <TodoList currentUser={this.props.user} containerType={"goal"}/>
             </div>
           </article>

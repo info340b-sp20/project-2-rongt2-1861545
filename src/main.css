@@ -105,7 +105,7 @@ input[type=checkbox] {
 
 .hero.is-primary .title,
 .hero.is-primary .subtitle {
-    color: rgba(0, 0, 0, 0.7);
+    color:black;
 }
 
 .tile input {
@@ -166,7 +166,7 @@ input:focus::-moz-placeholder {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    margin-top: 80px;
+    margin-top: 100px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
