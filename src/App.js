@@ -43,23 +43,21 @@ class App extends Component {
   // }
 
   //A callback function for registering new users
-  handleSignUp = (email, password, handle, avatar) => {
+  handleSignUp = (email, password, handle) => {
     this.setState({errorMessage:null}); //clear any old errors
 
     /* sign up user here */
     firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
               let profilePromise = firebase.auth().currentUser.updateProfile({
-                displayName: handle,
-                photoURL: avatar
+                displayName: handle
               });
               return profilePromise;
             })
             .then(() => {
               this.setState({
                 user: firebase.auth.currentUser,
-                displayName: handle,
-                photoURL: avatar
+                displayName: handle
               })
             })
             .catch((err) => {
@@ -163,7 +161,7 @@ class Content extends Component {
             <Route path="/goals" component={() => <Goals currentUser={this.props.user} />} />
             <Route path="/" component={() => <Todos currentUser={this.props.user} />} />
             </Switch>
-            <Profile />
+            <Profile currentUser={this.props.user} />
           </div>
         </div>
       </section>
@@ -174,7 +172,7 @@ class Content extends Component {
 class Todos extends Component {
   render() {
     return(
-      <div class="tile is-9 content-tab" id="today">
+      <div className="tile is-9 content-tab" id="today">
         <div className="tile is-parent is-vertical .scroll-containerr">
           <article className="tile is-child notification">
             <p className="title">Today</p>

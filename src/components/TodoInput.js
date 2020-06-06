@@ -3,7 +3,7 @@ import 'firebase/database';
 import firebase from 'firebase/app';
 
 //A form the user can use to post a todo
-export default class NewToday extends Component {
+export default class TodoInput extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -11,7 +11,6 @@ export default class NewToday extends Component {
     };
     this.userId = firebase.auth().currentUser.uid;
     this.userName = firebase.auth().currentUser.displayName;
-    this.userPhoto = firebase.auth().currentUser.photoURL;
     this.time = firebase.database.ServerValue.TIMESTAMP;
   }
 
@@ -38,13 +37,14 @@ export default class NewToday extends Component {
       text: this.state.todo,
       userId: this.userId,
       userName: this.userName,
-      userPhoto: this.userPhoto,
       time: this.time,
       type: this.props.currentType
     }
     let uid = this.userId;
     firebase.database().ref(uid).child("todos").push(newTodo);
-    this.setState({todo:''}); //empty out post for next time
+    this.setState({
+      todo:''
+    }); //empty out post for next time
   }
 
   render() {
@@ -69,6 +69,7 @@ export default class NewToday extends Component {
         </div>
         <div className="is-divider" />
       </div>
+      
     );
   }
 }

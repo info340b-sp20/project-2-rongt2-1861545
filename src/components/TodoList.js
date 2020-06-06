@@ -99,10 +99,15 @@ class TodoItem extends Component {
                     style={{backgroundColor: this.setStyle}}
             />
           </div>
-          <input className="ipt-todo ipt-all input" 
-                 type="text" value={todo.text} 
-                 style={{textDecorationLine: this.state.strike}}
-                 />
+          <input 
+            className="ipt-todo ipt-all input" 
+            type="text" 
+            value={todo.text} 
+            disabled="disabled"
+            onChange={this.updatePost}
+            onBlur = {this.checkInput}
+            style={{textDecorationLine: this.state.strike}}
+          />
         </div>
          <div className="is-divider" />
       </div>
