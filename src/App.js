@@ -153,15 +153,15 @@ class Content extends Component {
           <div className="tabs is-centered">
             <ul>
               <li className={pathname==="/"?"tab is-active":"tab"}><a href="/">Todos</a></li>
-              <li className={pathname==="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
               <li className={pathname==="/goals"?"tab is-active":"tab"}><a href="/goals">Goals</a></li>
+              <li className={pathname==="/complete"?"tab is-active":"tab"}><a href="/complete">Completed</a></li>
             </ul>
           </div>
           <div className="tile is-ancestor">
             <Switch>
-            <Route path="/complete" component={() => <Complete currentUser={this.props.user} /> } />
-            <Route path="/goals" component={() => <Goals currentUser={this.props.user} /> } />
-            <Route path="/" component={ () => <Todos currentUser={this.props.user} /> } />
+            <Route path="/complete" component={() => <Complete currentUser={this.props.user} />} />
+            <Route path="/goals" component={() => <Goals currentUser={this.props.user} />} />
+            <Route path="/" component={() => <Todos currentUser={this.props.user} />} />
             </Switch>
             <Profile />
           </div>

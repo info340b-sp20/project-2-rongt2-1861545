@@ -8,10 +8,12 @@ export default class TodoList extends Component {
     this.state = {
       todos:[]
     };
+    this.userId = firebase.auth().currentUser.uid;
   }
 
   componentDidMount() {
-    let todosRef = firebase.database().ref('todos');
+    let uid = this.userId;
+    let todosRef = firebase.database().ref(uid).child("todos");
     
     todosRef.on('value', (snapshot) => {
       let data = snapshot.val();
@@ -36,8 +38,9 @@ export default class TodoList extends Component {
       .map((todo) => <TodoItem  key={todo.id} todo={todo} currentUser={this.props.currentUser} />)
 
     return (
-      <div className="container">
-          {todoItems}
+      <div className="container d-flex flex-column-reverse">
+        {/* the latest todo will appear on the top */}
+        {todoItems}
       </div>
     );
   } 
@@ -51,11 +54,13 @@ class TodoItem extends Component {
       btnColor: "white",
       strike: ""
     };
+    this.userId = firebase.auth().currentUser.uid;
     this.toggleComplete = this.toggleComplete.bind(this);
   }
 
   toggleComplete = () => {
-    let ref = firebase.database().ref('todos/' + this.props.todo.id).child("type")
+    let uid = this.userId;
+    let ref = firebase.database().ref(uid + '/todos/' + this.props.todo.id).child("type")
 
     ref.once('value').then((snapshot) => {
       if(snapshot.val() === "complete") {

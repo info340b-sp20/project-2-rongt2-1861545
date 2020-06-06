@@ -21,7 +21,7 @@ export default class HomeNav extends Component {
             <a className="navbar-item" href="/">
               <span>Why One Profile?</span>
             </a>
-            <a className="navbar-item" href="/">
+            {/* <a className="navbar-item" href="/">
               <span>Login</span>
             </a>
             <div className="navbar-item" id="nav-divider">
@@ -34,7 +34,7 @@ export default class HomeNav extends Component {
                 </span>
                 <span> Sign Up</span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
