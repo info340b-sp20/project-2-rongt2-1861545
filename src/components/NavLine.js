@@ -22,7 +22,7 @@ class NavLine extends Component {
         <div class="navbar-end">
           <div class="navbar-item" onClick={this.props.handleSignOut}>
             <div class="buttons">
-              <a class="button is-primary">
+              <a id="logout" class="button is-primary">
                 <strong>Sign out</strong>
               </a>
             </div>

@@ -18,20 +18,22 @@ export default class HomeNav extends Component {
             <a className="navbar-item" href="/">
               <span>Features</span>
             </a>
-            <a className="navbar-item" href="/">
-              <span>Login</span>
-            </a>
-            <div className="navbar-item" id="nav-divider">
-              <span className="has-text-grey-light">|</span>
-            </div>
-            <div className="navbar-item">
-              <a href="/" className="button button-special box-shadow-lift is-rounded">
-                <span className="icon has-text-discord">
-                  <i className="fad fa-magic"></i>
-                </span>
-                <span>Sign Up</span>
-              </a>
-            </div>
+{
+  /*            <a className="navbar-item" href="/">
+  <span>Login</span>
+  </a>
+  <div className="navbar-item" id="nav-divider">
+    <span className="has-text-grey-light">|</span>
+  </div>
+  <div className="navbar-item">
+    <a href="/" className="button button-special box-shadow-lift is-rounded">
+      <span className="icon has-text-discord">
+        <i className="fad fa-magic"></i>
+      </span>
+      <span>Sign Up</span>
+    </a>
+  </div>*/
+}
           </div>
         </div>
       </nav>
