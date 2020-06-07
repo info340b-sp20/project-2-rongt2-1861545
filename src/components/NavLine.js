@@ -4,7 +4,7 @@ import 'firebase/database';
 class NavLine extends Component {
   render() {
     return(
-      <div id="navbarBasicExample" className="navbar-menu">
+      <div className="navbar-menu">
         <div className="navbar-start">
           {/* <a className="navbar-item" href="">Home</a> */}
           <a className="navbar-item is-active" href="/">Board</a>
@@ -18,11 +18,19 @@ class NavLine extends Component {
               <a className="navbar-item" href="/">Report an issue</a>
             </div>
           </div>
-          <button className="navbar-item" onClick={this.props.handleSignOut}>
-                Log out 
-          </button>
-        </div>
-      </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item" onClick={this.props.handleSignOut}>
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign out</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+  </div>
+         
     )
   }
 }

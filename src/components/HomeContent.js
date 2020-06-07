@@ -4,6 +4,8 @@ import "firebase/auth"
 
 
 export default class HomeContent extends Component {
+
+    
   render() {
     return(
       <div className="section">
@@ -17,12 +19,16 @@ export default class HomeContent extends Component {
                   <a href="/"><span className="tag is-warning is-medium"><span role="img" aria-label="heart">❤️&nbsp;</span>Made with love in Seattle</span></a>
                 </div>
               </div>
+              
+
               <div className="right">
-                <SignUpForm 
-                  signUpCallback={this.props.signUpCallback} 
-                  signInCallback={this.props.signInCallback} 
-                />
-              </div>
+                  <SignUpForm 
+                    signUpCallback={this.props.signUpCallback} 
+                    signInCallback={this.props.signInCallback} 
+                  />
+              </div>  
+             
+
             </div>
             {/* <a href="/" className="button button-special is-large is-rounded box-shadow-lift front-page-link">
               <span>Go to Board</span>

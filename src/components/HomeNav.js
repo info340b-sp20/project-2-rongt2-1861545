@@ -29,9 +29,9 @@ export default class HomeNav extends Component {
                 <span className="icon has-text-discord">
                   <i className="fad fa-magic"></i>
                 </span>
-                <span> Sign Up</span>
+                <span>Sign Up</span>
               </a>
-            </div> */}
+            </div>
           </div>
         </div>
       </nav>

@@ -37,6 +37,8 @@ class SignUpForm extends Component {
 
   render() {
     return (
+
+
       <form>
         {/* email */}
         <div className="form-group">
