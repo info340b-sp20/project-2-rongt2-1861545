@@ -4,7 +4,7 @@ import "firebase/auth"
 export default class HomeNav extends Component {
   render() {
     return(
-      <nav className="navbar is-transparent is-hidden-touch is-fixed-top is-spaced">
+      <nav className="navbar is-transparent is-hidden-touch is-fixed-top">
         <div className="navbar-brand">
           <a className="navbar-item" href="/" data-balloon="We're GoalLab 🤭" data-balloon-pos="right">
             <img id="logo-img" src="img/logo.png" alt="logo" />
@@ -31,7 +31,7 @@ export default class HomeNav extends Component {
                 </span>
                 <span> Sign Up</span>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
