@@ -10,6 +10,7 @@ class Profile extends Component {
     };
     this.userEmail = firebase.auth().currentUser.email;
     this.userId = firebase.auth().currentUser.uid;
+    this.name = firebase.auth().currentUser.displayName;
   }
 
   componentDidMount() {
@@ -67,7 +68,7 @@ class Profile extends Component {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p className="title is-4 pt-2" id="profile_name">User1865</p>
+                  <p className="title is-4 pt-2" id="profile_name">{this.name}</p>
                   {/* <p className="subtitle is-6">@jamesk97</p> */}
                 </div>
               </div>
@@ -101,9 +102,9 @@ class Profile extends Component {
               <div className="content">
                 <p>Bio: You can add things to your bio.</p>
                 {/* <input className="ipt-today ipt-all input" placeholder="Please input something to your bio." type="text" ></input> */}
-                <a href="/">#css</a> <a href="/">#responsive</a>
+                <p>Just some random thoughts here</p>
                 <br />
-                <a href="/">{this.userEmail}</a>
+                <p>{this.userEmail}</p>
                 {/* <time dateTime="2016-1-1">Last seen: few minutes ago</time> */}
               </div>
             </div>

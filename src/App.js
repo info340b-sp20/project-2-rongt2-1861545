@@ -10,7 +10,7 @@ import MainFooter from "./components/MainFooter"
 import firebase from 'firebase/app';
 import 'firebase/database';
 import './main.css';
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+
 
 class App extends Component {
   constructor(props) {
