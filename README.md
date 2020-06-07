@@ -1,5 +1,7 @@
 # Project 2: Goal Lab
 
+https://goallabdb.web.app/
+
 This a Goal Lab app for people to track their todos and goals. The mainboard is divided into three sections: Todos, Goals, and Complete. Users can add todos and goals to the Today, Todo, and Goal sections. Users can also mark any todo items as completed or incomplete to move them in or out of the Complete section.
 
 ## Installation & Usage
