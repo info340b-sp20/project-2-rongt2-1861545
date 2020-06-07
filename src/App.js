@@ -135,7 +135,7 @@ class Main extends Component {
   render() {
     return(
       <div>
-        <Hero />
+        <Hero currentUser={this.props.user} />
         <Content currentUser={this.props.user} />
       </div>
     )
