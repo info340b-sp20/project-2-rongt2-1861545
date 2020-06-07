@@ -19,9 +19,6 @@ export default class HomeNav extends Component {
               <span>Features</span>
             </a>
             <a className="navbar-item" href="/">
-              <span>Why One Profile?</span>
-            </a>
-            <a className="navbar-item" href="/">
               <span>Login</span>
             </a>
             <div className="navbar-item" id="nav-divider">
