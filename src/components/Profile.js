@@ -60,7 +60,7 @@ class Profile extends Component {
               </figure>
             </div>
             <div className="card-content">
-              <div className="d-flex flex-row justify-content-between">
+              <div className="d-flex flex-row justify-content-between pb-4">
                 <div className="media-left">
                   <figure className="image is-48x48">
                     <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder" />
@@ -68,7 +68,7 @@ class Profile extends Component {
                   </figure>
                 </div>
                 <div className="media-content">
-                  <p className="title is-4 pt-2" id="profile_name">{this.name}</p>
+                  <p className="title is-4 pt-2" id="profile_name">User1905</p>
                   {/* <p className="subtitle is-6">@jamesk97</p> */}
                 </div>
               </div>
@@ -94,7 +94,7 @@ class Profile extends Component {
                 </div>
               </nav>
               <div className="accomplishments">
-                <span className="tag is-link is-light mb-2"><i className="fas fa-trophy"></i>Kind of a big deal</span>
+                <span className="tag is-link is-light"><i className="fas fa-trophy"></i>Kind of a big deal</span>
                 {/* <span className="tag is-primary is-light mb-2"><i className="fas fa-medal" />100TodosCompleted</span> */}
                 <span className="tag is-danger is-light"><i className="far fa-hand-rock" />StayAtHome2020</span>
               </div>
@@ -104,7 +104,7 @@ class Profile extends Component {
                 {/* <input className="ipt-today ipt-all input" placeholder="Please input something to your bio." type="text" ></input> */}
                 <p>Just some random thoughts here</p>
                 <br />
-                <p>{this.userEmail}</p>
+                <a href="/" >{this.userEmail}</a>
                 {/* <time dateTime="2016-1-1">Last seen: few minutes ago</time> */}
               </div>
             </div>

@@ -83,7 +83,6 @@ class TodoItem extends Component {
         strike: "line-through"
       })
     }
-    console.log(this.state.btnColor)
     return this.state.btnColor;
   }
 
@@ -102,10 +101,9 @@ class TodoItem extends Component {
           <input 
             className="ipt-todo ipt-all input" 
             type="text" 
-            value={todo.text} 
-            disabled="disabled"
-            onChange={this.updatePost}
-            onBlur = {this.checkInput}
+            value={todo.text}
+            // onChange={this.updatePost}
+            // onBlur = {this.checkInput}
             style={{textDecorationLine: this.state.strike}}
           />
         </div>
