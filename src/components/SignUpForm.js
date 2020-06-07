@@ -38,7 +38,6 @@ class SignUpForm extends Component {
   render() {
     return (
 
-
       <form>
         {/* email */}
         <div className="form-group">
@@ -74,8 +73,8 @@ class SignUpForm extends Component {
 
         {/* buttons */}
         <div className="form-group">
-          <button className="btn btn-primary mr-2" onClick={this.handleSignUp}>Sign-up</button>
-          <button className="btn btn-primary" onClick={this.handleSignIn}>Sign-in</button>
+          <button className="btn btn-primary mr-2" onClick={this.handleSignUp}>Sign up</button>
+          <button className="btn btn-primary" onClick={this.handleSignIn}>Sign in</button>
         </div>
       </form>
     )

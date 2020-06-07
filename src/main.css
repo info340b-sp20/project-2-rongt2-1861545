@@ -40,7 +40,9 @@ text-decoration: none;
 #front-page-title {
     font-size: 4rem;
 }
-
+.hero .container .title{
+    color: black;
+}
 .front-page-link {
     border: none;
 }
