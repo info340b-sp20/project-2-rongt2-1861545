@@ -196,6 +196,7 @@ input:focus::-moz-placeholder {
 .box-shadow-lift {
     box-shadow: rgba(0, 0, 0, 0.1) 0 7px 25px 0;
 }
+
 #logout {
     color: black;
 }
@@ -210,6 +211,9 @@ input:focus::-moz-placeholder {
     color: #245bdb;
 }
 
+#hero-title, #hero-subtitle {
+    color: #4a4a4a;
+}
 .draggable {
     cursor: move;
 }
