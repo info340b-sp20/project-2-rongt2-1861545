@@ -18,19 +18,18 @@ class NavLine extends Component {
               <a className="navbar-item" href="/">Report an issue</a>
             </div>
           </div>
-          </div>
-
-          <div class="navbar-end">
-            <div class="navbar-item" onClick={this.props.handleSignOut}>
-              <div class="buttons">
-                <a class="button is-primary">
-                  <strong>Sign out</strong>
-                </a>
-              </div>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item" onClick={this.props.handleSignOut}>
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign out</strong>
+              </a>
             </div>
           </div>
-  </div>
-         
+        </div>
+      </div>
+
     )
   }
 }

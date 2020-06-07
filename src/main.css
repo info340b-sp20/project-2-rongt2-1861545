@@ -34,7 +34,9 @@
     z-index: 1;
     position: absolute;
 }
-
+.tab a:hover {
+text-decoration: none;
+}
 #front-page-title {
     font-size: 4rem;
 }
